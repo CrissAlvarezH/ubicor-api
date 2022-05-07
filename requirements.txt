@@ -1,9 +1,0 @@
-fastapi==0.75.1
-uvicorn==0.17.6
-SQLAlchemy==1.4.35
-passlib==1.7.4
-python-jose==3.3.0
-alembic==1.7.7
-psycopg2==2.9.3
-python-multipart==0.0.5
-# TODO user poetry

@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "fastapi-template"
+version = "0.1.0"
+description = ""
+authors = ["Cristian Alvarez H <alvarezhernandezcristian1@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.76.0"
+uvicorn = {extras = ["standard"], version = "^0.17.6"}
+SQLAlchemy = "^1.4.36"
+psycopg2 = "^2.9.3"
+pydantic = {extras = ["email"], version = "^1.9.0"}
+passlib = "^1.7.4"
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+python-multipart = "^0.0.5"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
