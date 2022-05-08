@@ -30,9 +30,12 @@ def authenticate_user(db, email: str, password: str):
     return user
 
 
-def create_access_token(data: schemas.TokenData, expires_delta: Optional[timedelta] = timedelta(minutes=15)):
+def create_access_token(
+    data: schemas.TokenData,
+    expires_delta: Optional[timedelta] = timedelta(minutes=settings.JWT_TOKEN_EXP_MINUTES)
+):
     to_encode = data.dict()
-    expire = datetime.now() + expires_delta
+    expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
     encode_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
     return encode_jwt

@@ -1,20 +1,22 @@
-from fastapi import Depends, HTTPException, status, Security
-from fastapi.security import SecurityScopes, OAuth2PasswordBearer
+import logging
+
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
 
 from jose import JWTError, jwt
 from pydantic import ValidationError
 
 from app.core.config import settings
-from db.dependencies import get_db
+from app.db.dependencies import get_db
 
-from . import schemas
 from . import crud
+from . import models
 
 
-oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="token",
-    scopes={"me": "Read information about the current user."},
-)
+LOG = logging.getLogger("auth.dependencies")
+
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 
 async def get_current_user(
@@ -35,13 +37,22 @@ async def get_current_user(
 
         if user is None:
             raise credentials_exception
-    except (JWTError, ValidationError):
+    except (JWTError, ValidationError) as e:
+        LOG.error(f"Error on get_current_user: {str(e)}")
+        LOG.exception(e)
         raise credentials_exception
     
     return user
 
 
 async def get_current_active_user(current_user = Depends(get_current_user)):
-    if current_user.disabled:
+    if not current_user.is_active:
         raise HTTPException(status_code=400, detail="Inactive user")
     return current_user
+
+
+class Auth:
+    user: models.User
+
+    def __init__(self, user = Depends(get_current_active_user)):
+        self.user = user

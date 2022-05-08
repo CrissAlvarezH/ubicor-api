@@ -2,3 +2,4 @@
 # imported by Alembic
 from .base_class import Base
 from app.auth.models import User, UserScope, Scope
+from app.universities.models import Position, University, Building, Room
