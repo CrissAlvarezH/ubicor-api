@@ -7,7 +7,7 @@ from . import schemas
 from . import crud
 from .utils import authenticate_user, create_access_token
 
-router = APIRouter()
+router = APIRouter(tags=["Auth"])
 
 
 @router.post("/login", response_model=schemas.Token)

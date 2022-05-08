@@ -47,6 +47,7 @@ class Building(Base, TimestampsMixin):
 
     creator = relationship("User")
     position = relationship("Position")
+    rooms = relationship("Room")
 
 
 class Room(Base, TimestampsMixin):
@@ -58,4 +59,6 @@ class Room(Base, TimestampsMixin):
     floor = Column(Integer)
     created_by = Column(ForeignKey("users.id"))
     building_id = Column(ForeignKey("buildings.id"))
+
+    creator = relationship("User")
  

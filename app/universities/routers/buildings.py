@@ -16,7 +16,7 @@ from app.universities.crud.buildings import create_building, delete_building, up
 from app.universities.crud.university import get_university
 
 
-router = APIRouter(prefix="/universities/{university_id}/buildings")
+router = APIRouter(prefix="/buildings")
 
 
 @router.post(
