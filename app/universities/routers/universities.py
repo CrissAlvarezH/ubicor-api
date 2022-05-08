@@ -1,21 +1,28 @@
 from typing import List
 
-from fastapi import APIRouter, Body, Depends, Path, \
-    HTTPException, Query, Response, status
+from fastapi import APIRouter, Body, Depends, \
+    Query, Response, status
 
 from app.db.dependencies import get_db
 from app.auth.dependencies import Auth
 
 from app.universities.crud.university import create_university, \
-    get_university, list_universities, update_university, delete_university
+    list_universities, update_university, delete_university
+from app.universities.dependencies.universities import get_current_university, \
+    verify_university_owner
+from app.universities.models import University
 from app.universities.schemas.universities import UniversityCreate, \
     UniversityRetrieve
 
 
-router = APIRouter()
+router = APIRouter(prefix="/universities")
 
 
-@router.post("/", response_model=UniversityRetrieve)
+@router.post(
+    "/",
+    response_model=UniversityRetrieve,
+    status_code=status.HTTP_201_CREATED
+)
 async def create(
     db = Depends(get_db),
     university_in: UniversityCreate = Body(...),
@@ -34,47 +41,34 @@ async def list(
     return list_universities(db, page, page_size)
 
 
-@router.get("/{id}", response_model=UniversityRetrieve)
+@router.get("/{university_id}", response_model=UniversityRetrieve)
 async def retrieve(
-    db = Depends(get_db),
-    id: int = Path(..., gt=0)
+    university: University = Depends(get_current_university)
 ):
-    university = get_university(db, id)    
-    if not university:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     return university
 
 
-@router.put("/{id}/", response_model=UniversityRetrieve)
+@router.put(
+    "/{university_id}/",
+    response_model=UniversityRetrieve,
+    dependencies=[Depends(verify_university_owner)]
+)
 async def update(
     db = Depends(get_db),
-    id: int = Path(..., gt=0),
+    university: University = Depends(get_current_university),
     university_in: UniversityCreate = Body(...),
-    auth: Auth = Depends()
 ):
-    university = get_university(db, id)
-    if not university:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    # Validate if current user is the creator or superuser
-    if university.created_by != auth.user.id and not auth.user.is_superuser:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-
-    return update_university(db, id, university_in)
+    return update_university(db, university.id, university_in)
 
 
-@router.delete("/{id}/")
+@router.delete(
+    "/{university_id}/",
+    dependencies=[Depends(verify_university_owner)]
+)
 async def delete(
     db = Depends(get_db),
-    id: int = Path(..., gt=0),
-    auth: Auth = Depends()
+    university: University = Depends(get_current_university),
 ):
-    university = get_university(db, id)
-    if not university:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
-    # Validate if current user is the creator or superuser
-    if university.created_by != auth.user.id and not auth.user.is_superuser:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN)
-
-    delete_university(db, id)
+    delete_university(db, university.id)
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)

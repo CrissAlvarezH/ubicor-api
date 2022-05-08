@@ -31,6 +31,7 @@ class University(Base, TimestampsMixin):
     position_id = Column(ForeignKey("positions.id"))
 
     position = relationship("Position")
+    buildings = relationship("Building")
 
 
 class Building(Base, TimestampsMixin):
@@ -39,9 +40,13 @@ class Building(Base, TimestampsMixin):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     code = Column(String, index=True)
+    is_active = Column(Boolean, default=False)
     created_by = Column(ForeignKey("users.id"))
     position_id = Column(ForeignKey("positions.id"))
     university_id = Column(ForeignKey("universities.id"))
+
+    creator = relationship("User")
+    position = relationship("Position")
 
 
 class Room(Base, TimestampsMixin):

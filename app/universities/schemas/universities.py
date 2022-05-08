@@ -1,6 +1,10 @@
+from typing import List
+
 from pydantic import BaseModel, Field, validator
 
-from .positions import PositionCreate, PositionRetrieve
+from app.universities.schemas.buildings import BuildingRetrieve
+from app.universities.schemas.positions import PositionCreate, \
+    PositionRetrieve
 
 
 class UniversityCreate(BaseModel):
@@ -23,6 +27,7 @@ class UniversityRetrieve(BaseModel):
     created_by: int 
     position_id: int
     position: PositionRetrieve
+    buildings: List[BuildingRetrieve]
 
     class Config:
         orm_mode = True

@@ -19,6 +19,16 @@ class UserCreate(BaseModel):
         return v
 
 
+class UserRetrieve(BaseModel):
+    id: int
+    full_name: str
+    email: EmailStr
+    is_active: bool
+
+    class Config:
+        orm_mode = True
+
+
 class Token(BaseModel):
     access_token: str
     token_type: str = "bearer"
