@@ -1,8 +1,28 @@
+from typing import List
+
 from pydantic import BaseModel, Field
 
 from app.auth.schemas import UserRetrieve
 
 from app.universities.schemas.positions import PositionCreate, PositionRetrieve
+
+
+class ImageRetrieve(BaseModel):
+    id: int
+    small: str
+    medium: str
+    original: str
+
+    class Config:
+        orm_mode = True
+
+
+class BuildingImageRetrieve(BaseModel):
+    priority_order: int
+    image: ImageRetrieve
+
+    class Config:
+        orm_mode = True
 
 
 class BuildingCreate(BaseModel):
@@ -18,6 +38,8 @@ class BuildingRetrieve(BaseModel):
     university_id: int
     creator: UserRetrieve
     position: PositionRetrieve
+    building_images: List[BuildingImageRetrieve]
+    images: List[ImageRetrieve]
 
     class Config:
         orm_mode = True

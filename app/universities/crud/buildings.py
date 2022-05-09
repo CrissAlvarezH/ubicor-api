@@ -4,9 +4,10 @@ from typing import Optional
 from sqlalchemy.orm import Session
 
 from app.auth.models import User
+from app.universities.crud.images import delete_image
 
 from app.universities.crud.positions import create_position, update_position
-from app.universities.models import Building
+from app.universities.models import Building, BuildingImage
 from app.universities.schemas.buildings import BuildingCreate
 
 
@@ -61,3 +62,32 @@ def delete_building(db: Session, id: int):
 
     db.add(building)
     db.commit()
+
+
+def attach_building_image(
+    db: Session,
+    building_id: int,
+    image_id: int
+) -> BuildingImage:
+    building_image = BuildingImage(building_id=building_id, image_id=image_id)
+
+    db.add(building_image)
+    db.commit()
+    db.refresh(building_image)
+
+    return building_image
+
+
+def delete_building_image(db: Session, image_id: int, building_id: int):
+    building_image = (
+        db.query(BuildingImage)
+        .filter(
+            BuildingImage.image_id == image_id,
+            BuildingImage.building_id == building_id)
+        .first()
+    )
+    if building_image:
+        db.delete(building_image)
+        db.commit()
+
+    delete_image(db, image_id)

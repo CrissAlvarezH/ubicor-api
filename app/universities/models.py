@@ -1,4 +1,5 @@
 from datetime import datetime
+from email.policy import default
 
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, \
@@ -48,6 +49,32 @@ class Building(Base, TimestampsMixin):
     creator = relationship("User")
     position = relationship("Position")
     rooms = relationship("Room")
+    building_images = relationship("BuildingImage")
+    images = relationship(
+        "Image",
+        secondary="join(BuildingImage, Image, BuildingImage.image_id == Image.id)",
+        primaryjoin="BuildingImage.building_id == Building.id",
+        viewonly=True
+    )
+
+
+class BuildingImage(Base):
+    __tablename__ = "buildings_images"
+
+    building_id = Column(ForeignKey("buildings.id"), primary_key=True)
+    image_id = Column(ForeignKey("images.id"), primary_key=True)
+    priority_order = Column(Integer, default=1)
+
+    image = relationship("Image")
+
+
+class Image(Base, TimestampsMixin):
+    __tablename__ = "images"
+
+    id = Column(Integer, primary_key=True, index=True)
+    small = Column(String)
+    medium = Column(String)
+    original = Column(String)
 
 
 class Room(Base, TimestampsMixin):

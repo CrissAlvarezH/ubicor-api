@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 
 from app.core.config import settings
@@ -18,5 +19,5 @@ if settings.BACKEND_CORS_ORIGINS:
         allow_headers=["*"],
     )
 
-
+app.mount("/app/static", StaticFiles(directory="app/static"), name="static")
 app.include_router(api_router, prefix="/api/v1")
