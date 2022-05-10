@@ -50,12 +50,6 @@ class Building(Base, TimestampsMixin):
     position = relationship("Position")
     rooms = relationship("Room")
     building_images = relationship("BuildingImage")
-    images = relationship(
-        "Image",
-        secondary="join(BuildingImage, Image, BuildingImage.image_id == Image.id)",
-        primaryjoin="BuildingImage.building_id == Building.id",
-        viewonly=True
-    )
 
 
 class BuildingImage(Base):

@@ -39,7 +39,6 @@ class BuildingRetrieve(BaseModel):
     creator: UserRetrieve
     position: PositionRetrieve
     building_images: List[BuildingImageRetrieve]
-    images: List[ImageRetrieve]
 
     class Config:
         orm_mode = True
