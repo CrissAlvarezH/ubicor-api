@@ -12,6 +12,8 @@ class Settings(BaseSettings):
 
     JWT_TOKEN_EXP_MINUTES: int = 15
 
+    BUILDINGS_MAX_BYTES_IMAGE_SIZE: int = 2193463
+
     class Config:
         case_sensitive = True
         env_file = ".env"

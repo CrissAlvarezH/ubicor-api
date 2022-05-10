@@ -1,5 +1,4 @@
 import logging
-import os
 from typing import List
 
 from fastapi import APIRouter, Body, Depends, File, Path, Response, UploadFile, \
@@ -18,7 +17,8 @@ from app.universities.schemas.buildings import BuildingCreate, BuildingImageRetr
     BuildingRetrieve, ImageRetrieve
 from app.universities.crud.buildings import create_building, delete_building, \
     update_building, attach_building_image, delete_building_image
-from app.universities.utils.images import save_building_image_file
+from app.universities.utils.images import delete_building_image_file, \
+    is_valid_image, save_building_image_file
 
 
 LOG = logging.getLogger("universities.routers")
@@ -44,12 +44,13 @@ async def create(
 
 @router.get("/", response_model=List[BuildingRetrieve])
 async def list(university: University = Depends(get_current_university)):
-    return university.buildings
+    return [b for b in university.buildings if b.is_active]
 
 
 @router.get("/{building_id}", response_model=BuildingRetrieve)
 async def retrieve(building: Building = Depends(get_current_building)):
     return building
+
 
 @router.put(
     "/{building_id}/",
@@ -93,6 +94,11 @@ async def create_building_images(
         )
 
     for file in files:
+        is_valid, error = is_valid_image(file)
+        if not is_valid:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+
         db_image = create_image(db)
         try:
             image_paths = save_building_image_file(file, building.id, db_image.id) 
@@ -119,6 +125,11 @@ async def update_building_image(
     building: Building = Depends(get_current_building),
     image_id: int = Path(..., gt=0)
 ):
+    is_valid, error = is_valid_image(file)
+    if not is_valid:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+
     image = get_image(db, image_id)
     if not image:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
@@ -134,6 +145,22 @@ async def update_building_image(
 
 
 @router.delete(
+    "/{building_id}/images/all/",
+    dependencies=[Depends(verify_building_owner)]
+)
+async def remove_all_building_images(
+    db=Depends(get_db),
+    building: Building = Depends(get_current_building),
+):
+    for building_image in building.building_images:
+        delete_building_image_file(building_image.image)
+        delete_building_image(
+            db, building_image.image.id, building.id)
+
+    return Response(status_code=status.HTTP_204_NO_CONTENT)
+
+
+@router.delete(
     "/{building_id}/images/{image_id}/",
     dependencies=[Depends(verify_building_owner)]
 )
@@ -146,13 +173,7 @@ async def remove_building_image(
     if not image:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    # remove building images
-    for image_path in [image.small, image.medium, image.original]:
-        # remove first slash from path, it's necessary to find the file
-        image_path = image_path[1:]
-        if os.path.exists(image_path):
-            os.remove(image_path)
-
+    delete_building_image_file(image)
     delete_building_image(db, image_id, building.id)
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
