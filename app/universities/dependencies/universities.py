@@ -10,7 +10,7 @@ from app.universities.crud.university import get_university
 
 async def get_current_university(
     db = Depends(get_db),
-    university_id: int = Path(..., gt=0)
+    university_id: int = Path(gt=0)
 ) -> University:
     university = get_university(db, university_id)
     if not university:

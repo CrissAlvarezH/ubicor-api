@@ -1,12 +1,12 @@
 [tool.poetry]
-name = "ubico_api"
+name = "ubicor_api"
 version = "0.1.0"
 description = ""
 authors = ["Cristian Alvarez H <alvarezhernandezcristian1@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.76.0"
+fastapi = "^0.78.0"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
 SQLAlchemy = "^1.4.36"
 psycopg2 = "^2.9.3"

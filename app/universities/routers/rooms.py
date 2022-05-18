@@ -23,7 +23,7 @@ router = APIRouter(prefix="/rooms")
 async def create(
     db = Depends(get_db),
     building: Building = Depends(get_current_building),
-    room_in: RoomCreate = Body(...),
+    room_in: RoomCreate = Body(),
     auth: Auth = Depends()
 ):
     return create_room(db, building.id, room_in, auth.user.id)
@@ -47,7 +47,7 @@ async def retrieve(room: Room = Depends(get_current_room)):
 async def update(
     db = Depends(get_db),
     room: Room = Depends(get_current_room),
-    room_in: RoomCreate = Body(...)
+    room_in: RoomCreate = Body()
 ):
     room = update_room(db, room.id, room_in)
     return room

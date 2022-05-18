@@ -11,7 +11,7 @@ from app.universities.crud.buildings import get_building
 
 async def get_current_building(
     db: Session = Depends(get_db),
-    building_id: int = Path(..., gt=0)
+    building_id: int = Path(gt=0)
 ) -> Building:
     building = get_building(db, building_id)
     if not building:

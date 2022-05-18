@@ -36,7 +36,7 @@ router = APIRouter(prefix="/buildings")
 async def create(
     db=Depends(get_db),
     university: University = Depends(get_current_university),
-    building_in: BuildingCreate = Body(...),
+    building_in: BuildingCreate = Body(),
     auth: Auth = Depends()
 ):
     return create_building(db, university.id, building_in, auth.user)
@@ -60,7 +60,7 @@ async def retrieve(building: Building = Depends(get_current_building)):
 async def update(
     db=Depends(get_db),
     building: Building = Depends(get_current_building),
-    building_in: BuildingCreate = Body(...)
+    building_in: BuildingCreate = Body()
 ):
     return update_building(db, building.id, building_in)
 
@@ -84,7 +84,7 @@ async def delete(
 )
 async def create_building_images(
     db=Depends(get_db),
-    files: List[UploadFile] = File(...),
+    files: List[UploadFile] = File(),
     building: Building = Depends(get_current_building)
 ):
     if len(building.building_images) + len(files) > 3:
@@ -121,9 +121,9 @@ async def create_building_images(
 )
 async def update_building_image(
     db=Depends(get_db),
-    file: UploadFile = File(...),
+    file: UploadFile = File(),
     building: Building = Depends(get_current_building),
-    image_id: int = Path(..., gt=0)
+    image_id: int = Path(gt=0)
 ):
     is_valid, error = is_valid_image(file)
     if not is_valid:
@@ -167,7 +167,7 @@ async def remove_all_building_images(
 async def remove_building_image(
     db=Depends(get_db),
     building: Building = Depends(get_current_building),
-    image_id: int = Path(..., gt=0),
+    image_id: int = Path(gt=0),
 ):
     image = get_image(db, image_id)
     if not image:

@@ -25,7 +25,7 @@ router = APIRouter(prefix="/universities")
 )
 async def create(
     db = Depends(get_db),
-    university_in: UniversityCreate = Body(...),
+    university_in: UniversityCreate = Body(),
     auth: Auth = Depends()
 ):
     university = create_university(db, university_in, auth.user)
@@ -56,7 +56,7 @@ async def retrieve(
 async def update(
     db = Depends(get_db),
     university: University = Depends(get_current_university),
-    university_in: UniversityCreate = Body(...),
+    university_in: UniversityCreate = Body(),
 ):
     return update_university(db, university.id, university_in)
 
