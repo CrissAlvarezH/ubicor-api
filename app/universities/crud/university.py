@@ -17,6 +17,14 @@ def get_university(db: Session, id: int) -> Optional[University]:
     )
 
 
+def get_university_by_slug(db: Session, slug: str) -> Optional[University]:
+    return (
+        db.query(University)
+        .filter(University.is_active, University.slug == slug)
+        .first()
+    )
+
+
 def list_universities(
     db: Session, page: int = 1, page_size: int = 25
 ) -> List[University]:

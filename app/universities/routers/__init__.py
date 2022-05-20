@@ -9,5 +9,5 @@ router = APIRouter()
 
 
 router.include_router(university_routes, tags=["University"])
-router.include_router(building_routes, tags=["Buildings"], prefix="/universities/{university_id}")
+router.include_router(building_routes, tags=["Buildings"], prefix="/universities/{university_slug}")
 router.include_router(room_routes, tags=["Rooms"], prefix="/universities/{university_id}/buildings/{building_id}")

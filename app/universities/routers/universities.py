@@ -24,7 +24,7 @@ router = APIRouter(prefix="/universities")
     status_code=status.HTTP_201_CREATED
 )
 async def create(
-    db = Depends(get_db),
+    db=Depends(get_db),
     university_in: UniversityCreate = Body(),
     auth: Auth = Depends()
 ):
@@ -34,14 +34,14 @@ async def create(
 
 @router.get("/", response_model=List[UniversityRetrieve])
 async def list(
-    db = Depends(get_db),
+    db=Depends(get_db),
     page: int = Query(1, gt=0),
     page_size: int = Query(100, gt=1, lt=101)
 ):
     return list_universities(db, page, page_size)
 
 
-@router.get("/{university_id}", response_model=UniversityRetrieve)
+@router.get("/{university_slug}", response_model=UniversityRetrieve)
 async def retrieve(
     university: University = Depends(get_current_university)
 ):
@@ -49,12 +49,12 @@ async def retrieve(
 
 
 @router.put(
-    "/{university_id}/",
+    "/{university_slug}/",
     response_model=UniversityRetrieve,
     dependencies=[Depends(verify_university_owner)]
 )
 async def update(
-    db = Depends(get_db),
+    db=Depends(get_db),
     university: University = Depends(get_current_university),
     university_in: UniversityCreate = Body(),
 ):
@@ -62,11 +62,11 @@ async def update(
 
 
 @router.delete(
-    "/{university_id}/",
+    "/{university_slug}/",
     dependencies=[Depends(verify_university_owner)]
 )
 async def delete(
-    db = Depends(get_db),
+    db=Depends(get_db),
     university: University = Depends(get_current_university),
 ):
     delete_university(db, university.id)
