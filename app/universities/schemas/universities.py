@@ -19,12 +19,24 @@ class UniversityCreate(BaseModel):
         return v
 
 
-class UniversityRetrieve(BaseModel):
-    id: int 
+class UniversityList(BaseModel):
+    id: int
     name: str
     slug: str
     is_active: bool
-    created_by: int 
+    created_by: int
+    position_id: int
+
+    class Config:
+        orm_mode = True
+
+
+class UniversityRetrieve(BaseModel):
+    id: int
+    name: str
+    slug: str
+    is_active: bool
+    created_by: int
     position_id: int
     position: PositionRetrieve
     buildings: List[BuildingRetrieve]

@@ -11,7 +11,7 @@ from app.universities.crud.university import create_university, \
 from app.universities.dependencies.universities import get_current_university, \
     verify_university_owner
 from app.universities.models import University
-from app.universities.schemas.universities import UniversityCreate, \
+from app.universities.schemas.universities import UniversityCreate, UniversityList, \
     UniversityRetrieve
 
 
@@ -32,7 +32,7 @@ async def create(
     return university
 
 
-@router.get("/", response_model=List[UniversityRetrieve])
+@router.get("/", response_model=List[UniversityList])
 async def list(
     db=Depends(get_db),
     page: int = Query(1, gt=0),
