@@ -14,7 +14,7 @@ from app.universities.models import University, Building
 
 from app.universities.crud.images import create_image, delete_image, get_image, update_image
 from app.universities.schemas.buildings import BuildingCreate, BuildingImageRetrieve, \
-    BuildingRetrieve, ImageRetrieve
+    BuildingList, BuildingRetrieve, ImageRetrieve
 from app.universities.crud.buildings import create_building, delete_building, \
     update_building, attach_building_image, delete_building_image
 from app.universities.utils.images import delete_building_image_file, \
@@ -29,7 +29,7 @@ router = APIRouter(prefix="/buildings")
 
 @router.post(
     "/",
-    response_model=BuildingRetrieve,
+    response_model=BuildingList,
     status_code=status.HTTP_201_CREATED,
     dependencies=[Depends(verify_university_owner)]
 )
@@ -42,7 +42,7 @@ async def create(
     return create_building(db, university.id, building_in, auth.user)
 
 
-@router.get("/", response_model=List[BuildingRetrieve])
+@router.get("/", response_model=List[BuildingList])
 async def list(university: University = Depends(get_current_university)):
     return [b for b in university.buildings if b.is_active]
 
@@ -54,7 +54,7 @@ async def retrieve(building: Building = Depends(get_current_building)):
 
 @router.put(
     "/{building_id}/",
-    response_model=BuildingRetrieve,
+    response_model=BuildingList,
     dependencies=[Depends(verify_building_owner)]
 )
 async def update(

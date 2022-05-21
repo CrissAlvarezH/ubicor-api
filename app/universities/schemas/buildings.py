@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 
 from app.auth.schemas import UserRetrieve
 
+from app.universities.schemas.rooms import RoomRetrieve
 from app.universities.schemas.positions import PositionCreate, PositionRetrieve
 
 
@@ -32,7 +33,7 @@ class BuildingCreate(BaseModel):
     position: PositionCreate
 
 
-class BuildingRetrieve(BaseModel):
+class BuildingList(BaseModel):
     id: int
     name: str
     code: str
@@ -44,3 +45,7 @@ class BuildingRetrieve(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class BuildingRetrieve(BuildingList):
+    rooms: List[RoomRetrieve]
