@@ -3,7 +3,7 @@ from typing import Optional
 from sqlalchemy.orm import Session
 
 from .utils import get_password_hash
-from .models import User
+from .models import Scope, User
 from .schemas import UserCreate
 
 
@@ -27,3 +27,11 @@ def create_user(db: Session, obj_in: UserCreate) -> User:
     db.commit()
     db.refresh(db_obj)
     return db_obj
+
+
+def create_scope(db: Session, scope_name: str) -> Scope:
+    scope = Scope(name=scope_name)
+    db.add(scope)
+    db.commit()
+    db.refresh(scope)
+    return scope
