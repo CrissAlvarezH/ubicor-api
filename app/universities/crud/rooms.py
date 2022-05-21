@@ -7,14 +7,14 @@ from app.universities.models import Room
 
 
 def create_room(
-    db: Session, building_id:int, room_in: RoomCreate, creator_id: int
+    db: Session, building_id: int, room_in: RoomCreate, creator_id: int
 ) -> Room:
     room = Room(
         **room_in.dict(),
         building_id=building_id,
         created_by=creator_id
     )
-    
+
     db.add(room)
     db.commit()
     db.refresh(room)

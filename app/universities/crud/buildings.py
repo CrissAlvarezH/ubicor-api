@@ -7,7 +7,7 @@ from app.auth.models import User
 from app.universities.crud.images import delete_image
 
 from app.universities.crud.positions import create_position, update_position
-from app.universities.models import Building, BuildingImage
+from app.universities.models import Building, BuildingImage, BuildingZone
 from app.universities.schemas.buildings import BuildingCreate
 
 
@@ -18,9 +18,11 @@ def create_building(
     building = Building(
         name=building_in.name,
         code=building_in.code,
+        zone=building_in.zone,
         created_by=creator.id,
         position_id=position.id,
-        university_id=university_id
+        university_id=university_id,
+        is_active=True
     )
 
     db.add(building)
@@ -33,8 +35,7 @@ def create_building(
 def get_building(db: Session, id: int) -> Optional[Building]:
     return (
         db.query(Building)
-        .filter(Building
-        .is_active, Building.id == id)
+        .filter(Building.is_active, Building.id == id)
         .first()
     )
 
@@ -62,6 +63,22 @@ def delete_building(db: Session, id: int):
 
     db.add(building)
     db.commit()
+
+
+def create_building_zone(db: Session, name: str) -> BuildingZone:
+    zone = BuildingZone(name=name)
+    db.add(zone)
+    db.commit()
+    db.refresh(zone)
+    return zone
+
+
+def get_building_zone(db: Session, name: str) -> Optional[BuildingZone]:
+    return (
+        db.query(BuildingZone)
+        .filter(BuildingZone.name == name)
+        .first()
+    )
 
 
 def attach_building_image(

@@ -43,10 +43,11 @@ def create_university(
     position = create_position(db, university_in.position)
 
     university = University(
-        name=university_in.name, 
+        name=university_in.name,
         slug=university_in.slug,
-        position_id=position.id, 
-        created_by=creator.id
+        position_id=position.id,
+        created_by=creator.id,
+        is_active=True
     )
 
     db.add(university)

@@ -1,0 +1,2464 @@
+[
+    {
+        "name": "Universidad de Córdoba",
+        "slug": "unicor",
+        "position": {
+            "latitude": 8.788883464408563,
+            "longitude": -75.85928276181221
+        },
+        "buildings": [
+            {
+                "name": "Almacen de Reactivos y Materiales",
+                "code": "1",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789109769101659,
+                    "longitude": -75.85785616189241
+                },
+                "rooms": [
+                    {
+                        "name": "Sala de Lavado de Materiales",
+                        "code": "1-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Investigación de Microbiología",
+                        "code": "1-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Docencia 1",
+                        "code": "1-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Farmacia Magistral",
+                        "code": "1-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Docencia 2",
+                        "code": "1-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Almacen de reactivos y materiales Departamento de Bacteriologia",
+                        "code": "1-06",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Microbiologia 2 y 4",
+                "code": "2",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789134,
+                    "longitude": -75.857719
+                },
+                "rooms": [
+                    {
+                        "name": "Farmacia Didactica",
+                        "code": "2-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Docencia 3",
+                        "code": "2-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Docencia 4",
+                        "code": "2-03",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Aulas",
+                "code": "3",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789250256865044,
+                    "longitude": -75.85780519992113
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "3-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "3-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Aulas",
+                "code": "4",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789401016080182,
+                    "longitude": -75.85785884410143
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "4-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "4-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "4-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "4-04",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Bacteriología",
+                "code": "5",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.788902,
+                    "longitude": -75.858174
+                },
+                "rooms": [
+                    {
+                        "name": "Departamento de Bacteriología",
+                        "code": "5-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "5-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Postgrados",
+                "code": "6",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.78863959858164,
+                    "longitude": -75.85801910609007
+                },
+                "rooms": [
+                    {
+                        "name": "Sala de Informatica Postgrados",
+                        "code": "6-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "División de Postgrados y Educación Continuada",
+                        "code": "6-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-204",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-205",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "6-305",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "Facultad Ciencias de la Salud",
+                "code": "7",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.788599506494194,
+                    "longitude": -75.85851900279522
+                },
+                "rooms": [
+                    {
+                        "name": "Departamento de Enfermeria",
+                        "code": "7-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Enfermeria",
+                        "code": "7-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Enfermeria",
+                        "code": "7-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Enfermeria",
+                        "code": "7-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Acreditación Enfermeria",
+                        "code": "7-105",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Enfermeria",
+                        "code": "7-106",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Profesores Facultad Ciencias de la Salud",
+                        "code": "7-107",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Enfermeria",
+                        "code": "7-108",
+                        "floor": 1
+                    },
+                    {
+                        "name": "oficina de Bienestar Facultad Ciencias de la Salud",
+                        "code": "7-109",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Salud Publica",
+                        "code": "7-110",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Sistemas Facultad Ciencias de la Salud",
+                        "code": "7-111",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departameto de Salud Pública",
+                        "code": "7-112",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Simulación y Anatomía",
+                        "code": "7-113",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Enfermeria",
+                        "code": "7-114",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Facultad Ciencias de la Salud",
+                        "code": "7-115",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "7-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "7-202",
+                        "floor": 2
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Investigación de Facultad Ciencias de la Salud",
+                "code": "8",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.788887,
+                    "longitude": -75.85845
+                },
+                "rooms": [
+                    {
+                        "name": "Cosultorio de Salud Ocupacional",
+                        "code": "8-101 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Salud Ocupacional",
+                        "code": "8-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorios Departamento de Salud Pública",
+                        "code": "8-103 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Micologia Departamento Bacteriologia",
+                        "code": "8-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Enfermedades de Transmisión Sexual y Biologia Celular",
+                        "code": "8-101 - PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Virus, Bacterias y Biologia Molecular",
+                        "code": "8-103 - PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de toxicología",
+                        "code": "8-201 - PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Laboratorio de Farmacologia",
+                        "code": "8-201 - PB",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Laboratorio de Farmacognosia",
+                        "code": "8-202 ",
+                        "floor": 2
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Regencia y Farmacia",
+                "code": "9",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789270137204614,
+                    "longitude": -75.85854884237052
+                },
+                "rooms": [
+                    {
+                        "name": "Departamento de Regencia y Farmacia",
+                        "code": "9-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Toxicología",
+                        "code": "9-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Centro de Documentación Ciencias de la Salud",
+                        "code": "9-03",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Unidad Administrativa Especial de Salud",
+                "code": "10",
+                "zone": "A",
+                "position": {
+                    "latitude": 8.789425535155528,
+                    "longitude": -75.8586658537388
+                },
+                "rooms": [
+                    {
+                        "name": "Area Asistencial",
+                        "code": "10-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Area Administrativa",
+                        "code": "10-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Facultad de Ingenierías",
+                "code": "11",
+                "zone": "B",
+                "position": {
+                    "latitude": 8.78966,
+                    "longitude": -75.859372
+                },
+                "rooms": [
+                    {
+                        "name": "Punto de la Bolsa de Valores",
+                        "code": "11-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Grupo de Investigación Socrates",
+                        "code": "11-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Facultad de Ingenierías",
+                        "code": "11-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-204",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Ing. De Sistemas",
+                        "code": "11-205 - LB",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Videoconferencias",
+                        "code": "11-205",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-206",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Sistemas",
+                        "code": "11-207",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-208",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Sala de Estudio programa de Ingeniera Industrial",
+                        "code": "11-305",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Depatamento de Ingeniería Industrial",
+                        "code": "11-306",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-307",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-308",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-401",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-402",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-403",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Departamento de Ing. Ambiental",
+                        "code": "11-404 - LB",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Laboratorio de Modelación y Sala de Lectura Ing. Ambiental",
+                        "code": "11-404",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-405",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-406",
+                        "floor": 4
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "11-407",
+                        "floor": 4
+                    }
+                ]
+            },
+            {
+                "name": "Salas de Prácticas Musicales",
+                "code": "12",
+                "zone": "B",
+                "position": {
+                    "latitude": 8.789604126749976,
+                    "longitude": -75.85998684167862
+                },
+                "rooms": [
+                    {
+                        "name": "Sala de Ensayo El Porro",
+                        "code": "12-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Ensayo El Fandango",
+                        "code": "12-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Ensayo La Puya",
+                        "code": "12-03",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Facultad de Educación y Ciencias Humanas",
+                "code": "13",
+                "zone": "B",
+                "position": {
+                    "latitude": 8.789292999593808,
+                    "longitude": -75.85978768765926
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "13-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-105",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-106",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "13-107",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula de Piano",
+                        "code": "13-101 - PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departameto de Idiomas Extranjeros",
+                        "code": "13-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Juntas Consejo de Facultad",
+                        "code": "13-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Ciencias Naturales",
+                        "code": "13-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos Docentes Naturales",
+                        "code": "13-204",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Secretaria Academica Facultad de Educación",
+                        "code": "13-205",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Decanatura Facultad de Educación",
+                        "code": "13-206",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Bienestar Universitario Facultad de Educación",
+                        "code": "13-207",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos Docentes",
+                        "code": "13-208",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Estudio",
+                        "code": "13-209",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Artes",
+                        "code": "13-210",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Grupo de Investigación, Desarrollo, Democracia y Educación",
+                        "code": "13-211",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos Docentes Sociales",
+                        "code": "13-212",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Centro de Documentación Sociales",
+                        "code": "13-213",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina Semillero de Investigación Sociales",
+                        "code": "13-214",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Ciencias Sociales",
+                        "code": "13-215",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos Docentes Psicopedagogia",
+                        "code": "13-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Departamento Psicopedagogía",
+                        "code": "13-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Secretaria Departamento Psicopedagogia",
+                        "code": "13-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Auditorio Facultad de Educación",
+                        "code": "13-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Sala de Lectura comité de Investigación",
+                        "code": "13-305",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Oficina Maestría en Educación",
+                        "code": "13-306",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Cubiculos Docentes Psicopedagogia",
+                        "code": "13-307",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Grupo de Investigación CYMTED-L",
+                        "code": "13-308",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Oficina Maestría en Ciencias Sociales",
+                        "code": "13-309",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Sala de Docentes de español y literatura",
+                        "code": "13-310",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Departameto de Cultura Física, recreación y Deportes",
+                        "code": "13-311",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Departamento de Informática",
+                        "code": "13-312",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Departamento de Español y Literatura",
+                        "code": "13-313",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "Informática e Idiomas",
+                "code": "14",
+                "zone": "B",
+                "position": {
+                    "latitude": 8.788883464408563,
+                    "longitude": -75.85928276181221
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "14-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "14-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "14-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Fotografia",
+                        "code": "14-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "14-105",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "14-106",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Edición de Videos",
+                        "code": "14-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Cromax",
+                        "code": "14-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 01",
+                        "code": "14-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 02",
+                        "code": "14-204",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 03",
+                        "code": "14-205",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 04",
+                        "code": "14-206",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 05",
+                        "code": "14-207",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de informatica 06",
+                        "code": "14-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Laboratorio de Idiomas Extranjeros",
+                        "code": "14-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Sala de Centro de Idiomas",
+                        "code": "14-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Grupo de Investigación Idiomas Extranjeros",
+                        "code": "14-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Laboratorio de Ingles",
+                        "code": "14-305",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "14-306",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Oficina Centro de Idiomas",
+                        "code": "14-307",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "Gimnasio Multifuerzas",
+                "code": "15",
+                "zone": "E",
+                "position": {
+                    "latitude": 8.788334103392698,
+                    "longitude": -75.86024131625891
+                },
+                "rooms": [
+                    {
+                        "name": "Piscina Semiolímpica",
+                        "code": "15-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina Centro Ciencias del Deporte",
+                        "code": "15-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Aerobicos",
+                        "code": "15-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Gimnasio Multifuerzas",
+                        "code": "15-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cancha de Multifuncional",
+                        "code": "15-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cancha de Microfutbol",
+                        "code": "15-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Masajes",
+                        "code": "15-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cancha de Futbol",
+                        "code": "15-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Pista Atletica",
+                        "code": "15-09",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Facultad de Ciencias Agricolas",
+                "code": "20",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791934755732731,
+                    "longitude": -75.8606419712305
+                },
+                "rooms": [
+                    {
+                        "name": "Cuarto de Colecciones Entomológicas",
+                        "code": "20-101-PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Entomología",
+                        "code": "20-102-PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficinas Docentes Ciencias Agrícolas",
+                        "code": "20-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficinas Docentes Ciencias Agrícolas",
+                        "code": "20-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Fitomejoramiento",
+                        "code": "20-105-PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Fitopatología",
+                        "code": "20-106-PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega de Insumos Agrícolas",
+                        "code": "20-107",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Prácticas de Fitopatología",
+                        "code": "20-108-PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Prácticas de Entomología",
+                        "code": "20-108-PD",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Fisiología Vegetal",
+                        "code": "20-109-PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Prácticas de Fisiología Vegetal",
+                        "code": "20-109-PD",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Facultad de Ciencias Agricolas",
+                        "code": "20-201-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "IPSE",
+                        "code": "20-202-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina de Postgrados F.C.A.",
+                        "code": "20-203-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina Comité Acreditación y Curriculo",
+                        "code": "20-204-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina Bienestar Universitario",
+                        "code": "20-205-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Ingeniería Agronómica y Desarrollo Rural",
+                        "code": "20-206-PA",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Estudio de pregrado",
+                        "code": "20-207",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Laboratorio de Biometria y Diseño Experimental",
+                        "code": "20-208-PB",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-209-PB",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-210-PB",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-208-PD",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-209-PD",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-210-PD",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Decanatura Facultad de Ciencias Agrícolas",
+                        "code": "20-201-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Facultad de Ciencias Agrícolas",
+                        "code": "20-202-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-203-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Proyectos Especiales",
+                        "code": "20-204-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Revista Temas Agrarios",
+                        "code": "20-205-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Cubiculos de Docentes",
+                        "code": "20-206-PC",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-305",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-306",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-307",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-308",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-309",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-310",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-311",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-312",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-313",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "20-314",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Laboratorio de Arroz",
+                        "code": "20-315",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Oficina SIN NOMBRE",
+                        "code": "20-316",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "Edificio de Laboratorios Integrales",
+                "code": "21",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.792290942407675,
+                    "longitude": -75.86106475442648
+                },
+                "rooms": []
+            },
+            {
+                "name": "Laboratorio de Sanidad Acuicola y Calidad de agua",
+                "code": "22",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791340006056368,
+                    "longitude": -75.86144160479307
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Sanidad Acuicola y Calidad de Agua",
+                        "code": "22-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Auditorio Facultad M.V.Z.",
+                        "code": "22-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Ingeniería Industrial",
+                "code": "23",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791454980023676,
+                    "longitude": -75.86145166307688
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio Integrado de Ingeniería Industrial",
+                        "code": "23-01",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Ingeniería Ambiental",
+                "code": "24",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791592153528782,
+                    "longitude": -75.86146105080843
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio Integrado de Ingeniería Ambiental",
+                        "code": "24-01",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Biotecnología Agrícola",
+                "code": "25",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791340006056368,
+                    "longitude": -75.86196966469288
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "25-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "ASPU",
+                        "code": "25-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sitraunicol",
+                        "code": "25-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Biotecnología Vegetal",
+                        "code": "25-04",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Ciencias Acuicolas",
+                "code": "26",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.79154377833713,
+                    "longitude": -75.86203772574663
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "26-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "26-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "26-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "26-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "26-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departamento de Ciencias Acuicolas",
+                        "code": "26-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "26-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Acuicultura",
+                        "code": "26-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Acreditación y Curriculo Acuicultura",
+                        "code": "26-09",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Publicaciones",
+                "code": "27",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791699506671266,
+                    "longitude": -75.86205683648586
+                },
+                "rooms": [
+                    {
+                        "name": "Oficina de Egresados",
+                        "code": "27-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Ingenieria de Sistemas SIS",
+                        "code": "27-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "27-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Ecologia",
+                        "code": "27-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "27-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Imagen Visual Corporativa",
+                        "code": "27-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Bienestar Facultad de Ciencias Econ. Jur, y Administrativas",
+                        "code": "27-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "27-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de laboratorio de Toxicologia",
+                        "code": "27-09",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Maestría en Ciencias Ambientales - Biologia",
+                        "code": "27-10",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Faculta de Ciencias Económicas, Jurídicas y Administrativas - Sala de Audiencias",
+                "code": "28",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.791892344645364,
+                    "longitude": -75.86194854229689
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "28-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "28-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Facultad de Ciencias Economicas, Juridicas y Administrativas",
+                        "code": "28-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Audiencias",
+                        "code": "28-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "28-05",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Física - Sala de Dibujo Técnico",
+                "code": "29",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.792136539667853,
+                    "longitude": -75.86188953369856
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Ingeniería Aplicada - Ing. Industrial",
+                        "code": "29-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Dibujo",
+                        "code": "29-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Docentes Departamento de Quimica",
+                        "code": "29-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departameto de Física y Electronica",
+                        "code": "29-04",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorios de Suelos y Aguas - Sección de Carteras",
+                "code": "30",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.79186650038663,
+                    "longitude": -75.86144797503948
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "30-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "30-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sección de Carteras",
+                        "code": "30-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "En Remodelación - Sin información",
+                        "code": "30-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "En Remodelación - Sin información",
+                        "code": "30-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "En Remodelación - Sin información",
+                        "code": "30-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Area de Practicas Laboratorio de Suelos",
+                        "code": "30-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula de suelos",
+                        "code": "30-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Suelos",
+                        "code": "30-09",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratiorio de Toxicologia y Gestión Ambiental",
+                "code": "31",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.79226211614999,
+                    "longitude": -75.86160488426685
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Toxicología y Gestión Ambiental",
+                        "code": "31-01",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Ingeniería Mecánica",
+                "code": "32",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.792266423521966,
+                    "longitude": -75.86176380515099
+                },
+                "rooms": [
+                    {
+                        "name": "Cubiculos de Docentes Departamento de Quimica",
+                        "code": "32-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departamento de Ingeniería Mecánica",
+                        "code": "32-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Facultad de Ciencias Básicas",
+                "code": "33",
+                "zone": "C",
+                "position": {
+                    "latitude": 8.792405,
+                    "longitude": -75.861792
+                },
+                "rooms": [
+                    {
+                        "name": "Sala de profesores departamento de Ingeniería Industrial",
+                        "code": "33-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Simulación Departamento de Ing. Industrial",
+                        "code": "33-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bienestar Universitario Facultad de Ciencias Básicas",
+                        "code": "33-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Facultad de Ciencias Básicas",
+                        "code": "33-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sin información TERCER PISO",
+                        "code": "33-301",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "División de Apoyo Logístico - Almacén",
+                "code": "34",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.792985422604813,
+                    "longitude": -75.86221877485514
+                },
+                "rooms": [
+                    {
+                        "name": "Bodega 1 ",
+                        "code": "34-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega 2",
+                        "code": "34-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "División de Apoyo Logistico",
+                        "code": "34-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sección de Almacen ",
+                        "code": "34-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega de la bolsa de servicios generales",
+                        "code": "34-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula de Maquinaria Agricola",
+                        "code": "34-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Dirección Maquinaria Agrícola",
+                        "code": "34-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Taller de Maquinaria Agrícola",
+                        "code": "34-08",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Procesos de Materiales y Taller de Macánica",
+                "code": "35",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.792689208405168,
+                    "longitude": -75.86237668991089
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de metrología y resistencia de materiales",
+                        "code": "35-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de equipos y herramientas",
+                        "code": "35-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega de almaceamiento - cerrajeria",
+                        "code": "35-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega de almacenamiento de tesis",
+                        "code": "35-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Docentes Ingeniería Mecánica",
+                        "code": "35-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "35-202",
+                        "floor": 2
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Biotecnología",
+                "code": "36",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.792708094552479,
+                    "longitude": -75.86249604821205
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Biotecnología GRUBIODEQ",
+                        "code": "36-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Grupo de química computacional",
+                        "code": "36-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Vivero",
+                "code": "37",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.792696829131396,
+                    "longitude": -75.86280718445778
+                },
+                "rooms": [
+                    {
+                        "name": "Aula vivero",
+                        "code": "37-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Propagación de Plantas",
+                        "code": "37-02",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Matemáticas y Estadistica",
+                "code": "38",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.79212,
+                    "longitude": -75.863074
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de informatica y Estadítica - LIE",
+                        "code": "38-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Docentes Matematicas y Estadistica",
+                        "code": "38-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Informatica y Matemática -LIM",
+                        "code": "38-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Docentes Matematicas y Estadistica",
+                        "code": "38-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "38-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "38-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de profesores departamento de Matematicas y Estadística",
+                        "code": "38-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Departamento de Matematicas y Estadistica",
+                        "code": "38-204",
+                        "floor": 2
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Química y Laboratorios",
+                "code": "39",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.792204132291495,
+                    "longitude": -75.86247157305479
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Aguas",
+                        "code": "39-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Genetica",
+                        "code": "39-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Bioquímica",
+                        "code": "39-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Docentes Química Orgánica",
+                        "code": "39-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Microbiología",
+                        "code": "39-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Materiales y Catálisis",
+                        "code": "39-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Dirección Laboratorio de Materiales y Catálisis",
+                        "code": "39-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Docentes departamento de Química",
+                        "code": "39-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Quimica Orgánica",
+                        "code": "39-09",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Quimica General y Fisicoquímica",
+                        "code": "39-10",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Termodinámica",
+                        "code": "39-11",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departamento de Química",
+                        "code": "39-13",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Almacen de reactivos y materiales Departamento de Química",
+                        "code": "39-14",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Análisis Instrumental",
+                        "code": "39-15",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Departamento de Biologia y Laboratorios",
+                "code": "40",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791777370813788,
+                    "longitude": -75.86274515837431
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Mecanica y Calor",
+                        "code": "40-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Informatica de Física",
+                        "code": "40-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Electricidad",
+                        "code": "40-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Biología",
+                        "code": "40-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Ecología",
+                        "code": "40-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Herbario",
+                        "code": "40-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sin Informacion",
+                        "code": "40-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Telematica",
+                        "code": "40-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Metrologia",
+                        "code": "40-09",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Botanica",
+                        "code": "40-10",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Zoologia",
+                        "code": "40-11",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos de Biología",
+                        "code": "40-12",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Biologia General",
+                        "code": "40-13",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departameto de Biologia",
+                        "code": "40-14",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio de Cinética y Biocombustible - Almacén de Reactivos de Biologia",
+                "code": "41",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791859542316656,
+                    "longitude": -75.86315017193556
+                },
+                "rooms": [
+                    {
+                        "name": "Bodega Oficina de Archivo y Correspondencia",
+                        "code": "41-01 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio De Cinetica y Biocombustible",
+                        "code": "41-02 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Biodiversidad - Dpto de Biologia",
+                        "code": "41-01 - PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Almacen de Reactivos y materiales departamento de Biologia",
+                        "code": "41-02 - PB",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio Procesamiento Post-Cosecha",
+                "code": "42",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791561670532033,
+                    "longitude": -75.8634814247489
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Procesamiento Post-cosecha",
+                        "code": "42-01",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Laboratorio Biologia Molecular",
+                "code": "43",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791923821624735,
+                    "longitude": -75.86337614804506
+                },
+                "rooms": [
+                    {
+                        "name": "Laboratorio de Biologia Molecular",
+                        "code": "43-01",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Aulas - Cubiculos de Matemáticas y Física",
+                "code": "44",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.79171077212268,
+                    "longitude": -75.86329434067011
+                },
+                "rooms": [
+                    {
+                        "name": "Aula",
+                        "code": "44-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-09",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-10",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-11",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-12",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Fisica",
+                        "code": "44-13",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-14",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-15",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-16",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "44-17",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Matemáticas",
+                        "code": "44-18",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Matemáticas",
+                        "code": "44-19",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Matemáticas",
+                        "code": "44-20",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docentes Matemáticas",
+                        "code": "44-21",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bodega",
+                        "code": "44-22",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "División de Bienestar Universitario",
+                "code": "45",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791250545019642,
+                    "longitude": -75.86316794157028
+                },
+                "rooms": [
+                    {
+                        "name": "Oficina de Equidad Social",
+                        "code": "45-01 ",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Bienestar Universitario",
+                        "code": "45-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Promocion Social",
+                        "code": "45-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Instituto de Investigaciones Geograficas y Ambientales - Geocaribe",
+                        "code": "45-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Sistemas de Investigación Geografica SIG",
+                        "code": "45-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Departamento de Geografia",
+                        "code": "45-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "45-07 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Sala de Documentación Geografia",
+                        "code": "45-08 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "45-09 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de sistemas de Investigación Geografica SIG Maestria en Geografia",
+                        "code": "45-10 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Cubiculos Docetes Geografia",
+                        "code": "45-11 - PA",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Archivo y Correspondencia",
+                        "code": "45-12 - PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Maestría en Física",
+                        "code": "45-13 - PB",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Grupo Física Estado Solido",
+                        "code": "45-13 - PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Fotointerpretación",
+                        "code": "45-14 - PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Aula",
+                        "code": "45-15 - PC",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Física Moderna",
+                        "code": "45-16 - PC",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Edificio Administrativo",
+                "code": "46",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.790891706644137,
+                    "longitude": -75.86288966238499
+                },
+                "rooms": [
+                    {
+                        "name": "Vicerrectoria Administrativa y Financiera",
+                        "code": "46-101",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Asuntos Financieros",
+                        "code": "46-102",
+                        "floor": 1
+                    },
+                    {
+                        "name": "División de Admisiones, Registro y Control Académico",
+                        "code": "46-103",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Talento Humano",
+                        "code": "46-104",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Vicerrectoria Académica",
+                        "code": "46-201",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Sala de Juntas Consejo Académico",
+                        "code": "46-202",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina de Cartera",
+                        "code": "46-203",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Mantenimiento de Equipos",
+                        "code": "46-204",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Oficina de Juridica",
+                        "code": "46-205",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Salon Cristal",
+                        "code": "46-206",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Centro de Innovación en TIC para Apoyo a la Academia CINTIA",
+                        "code": "46-207",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Atención al egresado",
+                        "code": "46-208",
+                        "floor": 2
+                    },
+                    {
+                        "name": "División de Educación a Distancia",
+                        "code": "46-209",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Control Interno",
+                        "code": "46-210",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Vicerrectoria de Investigación y Extensión",
+                        "code": "46-211",
+                        "floor": 2
+                    },
+                    {
+                        "name": "Rectoria",
+                        "code": "46-301",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Unidad de Planeación y Desarrollo",
+                        "code": "46-302",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Sección de Sistemas de Información y Estadística",
+                        "code": "46-303",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Control Interno Disciplinario",
+                        "code": "46-304",
+                        "floor": 3
+                    },
+                    {
+                        "name": "División de Contratación",
+                        "code": "46-305",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Unidad de Gestión y Relaciones Internacionales",
+                        "code": "46-306",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Unidad de Desarrollo Organizacional y Gestión de Calidad",
+                        "code": "46-307",
+                        "floor": 3
+                    },
+                    {
+                        "name": "Secretaria General",
+                        "code": "46-308",
+                        "floor": 3
+                    }
+                ]
+            },
+            {
+                "name": "CINPIC - Laboratorio de Limnologia",
+                "code": "47",
+                "zone": "D",
+                "position": {
+                    "latitude": 8.791968220727933,
+                    "longitude": -75.8641342073679
+                },
+                "rooms": [
+                    {
+                        "name": "Oficina de Convenios 1",
+                        "code": "47-01",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Convenios 2",
+                        "code": "47-02",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Peces ornamentales",
+                        "code": "47-03",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Crioconservación de semen de peces",
+                        "code": "47-04",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de Dirección",
+                        "code": "47-05",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Microscopia",
+                        "code": "47-06",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Reproducción y Alimento vivo",
+                        "code": "47-07",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de termosensibilidad",
+                        "code": "47-08",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Oficina de pasantes",
+                        "code": "47-09",
+                        "floor": 1
+                    },
+                    {
+                        "name": "Laboratorio de Alimento vivo",
+                        "code": "47-10",
+                        "floor": 1
+                    }
+                ]
+            },
+            {
+                "name": "Piscina Semiolímpia",
+                "code": "100",
+                "zone": "E",
+                "position": {
+                    "latitude": 0.0,
+                    "longitude": 0.0
+                },
+                "rooms": []
+            },
+            {
+                "name": "Cancha de Voleibol",
+                "code": "101",
+                "zone": "E",
+                "position": {
+                    "latitude": 0.0,
+                    "longitude": 0.0
+                },
+                "rooms": []
+            },
+            {
+                "name": "Cancha de Basketbol",
+                "code": "102",
+                "zone": "E",
+                "position": {
+                    "latitude": 0.0,
+                    "longitude": 0.0
+                },
+                "rooms": []
+            },
+            {
+                "name": "Estadio de Fútbol",
+                "code": "103",
+                "zone": "E",
+                "position": {
+                    "latitude": 0.0,
+                    "longitude": 0.0
+                },
+                "rooms": []
+            }
+        ]
+    }
+]
