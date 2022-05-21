@@ -28,6 +28,7 @@ class BuildingImageRetrieve(BaseModel):
 class BuildingCreate(BaseModel):
     name: str
     code: str = Field(..., max_length=10, min_length=1)
+    zone: str
     position: PositionCreate
 
 
@@ -35,6 +36,7 @@ class BuildingRetrieve(BaseModel):
     id: int
     name: str
     code: str
+    zone: str
     university_id: int
     creator: UserRetrieve
     position: PositionRetrieve

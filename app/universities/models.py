@@ -26,13 +26,18 @@ class University(Base, TimestampsMixin):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
-    slug = Column(String, unique=True)
+    slug = Column(String, unique=True, index=True)
     is_active = Column(Boolean, default=False)
     created_by = Column(ForeignKey("users.id"))
     position_id = Column(ForeignKey("positions.id"))
 
     position = relationship("Position")
     buildings = relationship("Building")
+
+
+class BuildingZone(Base):
+    __tablename__ = "building_zones"
+    name = Column(String, primary_key=True, index=True)
 
 
 class Building(Base, TimestampsMixin):
@@ -42,6 +47,7 @@ class Building(Base, TimestampsMixin):
     name = Column(String)
     code = Column(String, index=True)
     is_active = Column(Boolean, default=False)
+    zone = Column(ForeignKey("building_zones.name"))
     created_by = Column(ForeignKey("users.id"))
     position_id = Column(ForeignKey("positions.id"))
     university_id = Column(ForeignKey("universities.id"))
