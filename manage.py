@@ -1,17 +1,23 @@
+""" Generate global cli automatically """
 import click
+from importlib import import_module
 
-from app.core.commands import core_cli
-from app.universities.commands import universities_cli
-
-
-@click.group()
-def main_cli():
-    pass
+from app.core.config import COMMAND_LOCATIONS
 
 
-main_cli.add_command(core_cli)
-main_cli.add_command(universities_cli)
+def manage_commands():
+    @click.group()
+    def main_cli():
+        pass
+
+    for location in COMMAND_LOCATIONS:
+        commands = import_module(f"app.{location}.commands")
+        module_cli = getattr(commands, "cli")
+        main_cli.add_command(module_cli, location)
+
+    return main_cli
 
 
 if __name__ == "__main__":
+    main_cli = manage_commands()
     main_cli()

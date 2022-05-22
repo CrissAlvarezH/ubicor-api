@@ -3,6 +3,12 @@ from typing import Optional, Dict, Any
 from pydantic import BaseSettings, PostgresDsn, validator
 
 
+COMMAND_LOCATIONS = [
+    "core",
+    "universities"
+]
+
+
 class Settings(BaseSettings):
     PROJECT_NAME: str = "api"
 

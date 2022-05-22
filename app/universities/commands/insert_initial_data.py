@@ -17,6 +17,7 @@ from app.auth.crud import get_user
 
 @click.command()
 def insert_initial_data():
+    click.echo("\nINIT insert initial data")
     dirname = os.path.dirname(__file__)
     data_path = os.path.join(dirname, "initial_data.json")
     with open(data_path, "r") as f:
@@ -64,3 +65,6 @@ def insert_initial_data():
                     room_in=room_data,
                     creator_id=user.id
                 )
+    db.close()
+
+    click.echo("FINISH insert initial data")

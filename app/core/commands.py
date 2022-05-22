@@ -6,25 +6,30 @@ from app.db.session import SessionLocal
 
 
 @click.group()
-def core_cli():
+def cli():
     pass
 
 
-@core_cli.command()
+@cli.command()
 def create_superuser():
+    click.echo("\nINIT create superuser")
     db = SessionLocal()
 
     user_db = get_user(db, email="root@email.com")
-    if user_db is None:
+    if user_db is not None:
+        click.echo("superuser already exist")
+    else:
         user_in = UserCreate(
             full_name="root user",
             email="root@email.com",
             password="fhw83D4hsHd0fa"
         )
         create_user(db, user_in)
-    pass
+
+    db.close()
+    click.echo("FINISH create superuser")
 
 
-@core_cli.command()
+@cli.command()
 def create_default_scopes():
     pass
