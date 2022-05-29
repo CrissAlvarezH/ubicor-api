@@ -1,8 +1,8 @@
 """create models
 
-Revision ID: 14bf5215440e
+Revision ID: 5ce4505fe060
 Revises: 
-Create Date: 2022-05-22 15:06:34.820483
+Create Date: 2022-05-28 13:00:27.285426
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '14bf5215440e'
+revision = '5ce4505fe060'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -35,8 +35,8 @@ def upgrade():
     op.create_index(op.f('ix_images_id'), 'images', ['id'], unique=False)
     op.create_table('positions',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('latitude', sa.Float(), nullable=True),
-    sa.Column('longitude', sa.Float(), nullable=True),
+    sa.Column('lat', sa.Float(), nullable=True),
+    sa.Column('lng', sa.Float(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_positions_id'), 'positions', ['id'], unique=False)

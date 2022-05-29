@@ -17,8 +17,8 @@ class Position(Base):
     __tablename__ = "positions"
 
     id = Column(Integer, primary_key=True, index=True)
-    latitude = Column(Float)
-    longitude = Column(Float)
+    lat = Column(Float)
+    lng = Column(Float)
 
 
 class University(Base, TimestampsMixin):

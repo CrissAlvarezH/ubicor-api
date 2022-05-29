@@ -2,8 +2,8 @@ from pydantic import BaseModel
 
 
 class PositionCreate(BaseModel):
-    latitude: float 
-    longitude: float
+    lat: float 
+    lng: float
 
 
 class PositionRetrieve(PositionCreate):
