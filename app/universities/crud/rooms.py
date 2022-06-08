@@ -1,6 +1,7 @@
 from typing import Optional
 
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
 
 from app.universities.schemas.rooms import RoomCreate
 from app.universities.models import Room
@@ -20,6 +21,16 @@ def create_room(
     db.refresh(room)
 
     return room
+
+
+def search_rooms(db: Session, building_id: int, search: str):
+    param = f"%{search}%"
+    return (
+        db.query(Room)
+        .filter(or_(Room.code.ilike(param), Room.name.ilike(param)))
+        .filter(Room.building_id == building_id)
+        .all()
+    )
 
 
 def get_room(db: Session, id: int) -> Optional[Room]:

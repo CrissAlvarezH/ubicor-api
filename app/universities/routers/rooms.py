@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Depends, status, Response, Body
+from fastapi import APIRouter, Depends, Query, status, Response, Body
 
 from app.auth.dependencies import Auth
 from app.db.dependencies import get_db
@@ -9,7 +9,7 @@ from app.universities.models import Building, Room
 from app.universities.schemas.rooms import RoomCreate, RoomRetrieve
 from app.universities.dependencies.buildings import get_current_building, verify_building_owner
 from app.universities.dependencies.rooms import get_current_room
-from app.universities.crud.rooms import create_room, update_room, delete_room
+from app.universities.crud.rooms import create_room, search_rooms, update_room, delete_room
 
 
 router = APIRouter(prefix="/rooms")
@@ -30,7 +30,14 @@ async def create(
 
 
 @router.get("/", response_model=List[RoomRetrieve])
-async def list(building: Building = Depends(get_current_building)):
+async def list(
+    db=Depends(get_db),
+    search: str = Query(None),
+    building: Building = Depends(get_current_building)
+):
+    if search:
+        return search_rooms(db, building.id, search)
+
     return building.rooms
 
 
