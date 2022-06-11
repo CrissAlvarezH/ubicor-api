@@ -12,6 +12,19 @@ from app.universities.dependencies.rooms import get_current_room
 from app.universities.crud.rooms import create_room, search_rooms, update_room, delete_room
 
 
+# router for /rooms
+standalone_room_router = APIRouter(prefix="/rooms")
+
+
+@standalone_room_router.get("/", response_model=List[RoomRetrieve])
+async def list_standalone(
+    db=Depends(get_db),
+    search: str = Query(None),
+):
+    return search_rooms(db, search)
+
+
+# Router for /university/{university_id}/buildings/{building_id}/rooms
 router = APIRouter(prefix="/rooms")
 
 
@@ -30,14 +43,7 @@ async def create(
 
 
 @router.get("/", response_model=List[RoomRetrieve])
-async def list(
-    db=Depends(get_db),
-    search: str = Query(None),
-    building: Building = Depends(get_current_building)
-):
-    if search:
-        return search_rooms(db, building.id, search)
-
+async def list(building: Building = Depends(get_current_building)):
     return building.rooms
 
 

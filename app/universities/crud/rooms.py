@@ -23,12 +23,11 @@ def create_room(
     return room
 
 
-def search_rooms(db: Session, building_id: int, search: str):
+def search_rooms(db: Session, search: str):
     param = f"%{search}%"
     return (
         db.query(Room)
         .filter(or_(Room.code.ilike(param), Room.name.ilike(param)))
-        .filter(Room.building_id == building_id)
         .all()
     )
 
