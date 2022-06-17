@@ -4,7 +4,7 @@ WORKDIR /tmp
 
 RUN pip install poetry
 
-COPY ./pyproject.toml ./poetry.lock* .
+COPY ./pyproject.toml ./poetry.lock* ./
 
 RUN poetry export --format requirements.txt --output requirements.txt --without-hashes
 
@@ -18,5 +18,7 @@ COPY --from=requirements-stage /tmp/requirements.txt .
 RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
 COPY . .
+
+RUN chmod +x ./docker-entrypoint.sh
 
 CMD ./docker-entrypoint.sh
