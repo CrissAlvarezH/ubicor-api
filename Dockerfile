@@ -9,7 +9,9 @@ COPY ./pyproject.toml ./poetry.lock* ./
 RUN poetry export --format requirements.txt --output requirements.txt --without-hashes
 
 # Use requirements.txt created in previous stage to install dependencies
-FROM python:3.9
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get -y install libpq-dev gcc
 
 WORKDIR /code
 
