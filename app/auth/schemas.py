@@ -1,5 +1,4 @@
-from curses.ascii import US
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, EmailStr, Field, validator
 
@@ -21,7 +20,7 @@ class UserCreate(BaseModel):
 
 
 class OAuthUserCreate(UserCreate):
-    password: str = Field(...)
+    password: Optional[str] = Field("@")
     provider: str
 
 

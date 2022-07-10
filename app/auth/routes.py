@@ -11,7 +11,7 @@ router = APIRouter(tags=["Auth"])
 
 
 @router.post("/login", response_model=schemas.Token)
-async def login(db = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()):
+async def login(db=Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(db, form_data.username, form_data.password)
     if not user:
         raise HTTPException(
@@ -24,7 +24,7 @@ async def login(db = Depends(get_db), form_data: OAuth2PasswordRequestForm = Dep
 
 
 @router.post("/register", response_model=schemas.Token)
-async def register(db = Depends(get_db), user_in: schemas.UserCreate = Body()):
+async def register(db=Depends(get_db), user_in: schemas.UserCreate = Body()):
     # check email is not taken
     if crud.get_user(db, email=user_in.email):
         raise HTTPException(
@@ -38,7 +38,7 @@ async def register(db = Depends(get_db), user_in: schemas.UserCreate = Body()):
 
 
 @router.post("/get-or-create-user", response_model=schemas.UserRetrieve)
-async def getOrCreateUser(db = Depends(get_db), user_in: schemas.OAuthUserCreate = Body()):
+async def getOrCreateUser(db=Depends(get_db), user_in: schemas.OAuthUserCreate = Body()):
     # check email is not taken
     user = crud.get_user(db, email=user_in.email)
     if user:
