@@ -1,3 +1,4 @@
+from email.policy import default
 from sqlalchemy import Column, Boolean, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
@@ -11,6 +12,7 @@ class User(Base):
     full_name = Column(String)
     email = Column(String, unique=True, index=True, nullable=False)
     password = Column(String, nullable=False)
+    provider = Column(String, default="ubicor")
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
 

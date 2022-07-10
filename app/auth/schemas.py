@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, EmailStr, Field, validator
 
@@ -19,10 +19,16 @@ class UserCreate(BaseModel):
         return v
 
 
+class OAuthUserCreate(UserCreate):
+    password: Optional[str] = Field("@")
+    provider: str
+
+
 class UserRetrieve(BaseModel):
     id: int
     full_name: str
     email: EmailStr
+    scopes: List[str]
     is_active: bool
 
     class Config:
