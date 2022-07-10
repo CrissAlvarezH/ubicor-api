@@ -1,3 +1,4 @@
+from curses.ascii import US
 from typing import List
 
 from pydantic import BaseModel, EmailStr, Field, validator
@@ -19,10 +20,16 @@ class UserCreate(BaseModel):
         return v
 
 
+class OAuthUserCreate(UserCreate):
+    password: str = Field(...)
+    provider: str
+
+
 class UserRetrieve(BaseModel):
     id: int
     full_name: str
     email: EmailStr
+    scopes: List[str]
     is_active: bool
 
     class Config:

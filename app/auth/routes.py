@@ -35,3 +35,14 @@ async def register(db = Depends(get_db), user_in: schemas.UserCreate = Body()):
     access_token = create_access_token(schemas.TokenData(user_id=user_created.id))
 
     return schemas.Token(access_token=access_token)
+
+
+@router.post("/get-or-create-user", response_model=schemas.UserRetrieve)
+async def getOrCreateUser(db = Depends(get_db), user_in: schemas.OAuthUserCreate = Body()):
+    # check email is not taken
+    user = crud.get_user(db, email=user_in.email)
+    if user:
+        return user
+
+    user = crud.create_user(db, user_in)
+    return user

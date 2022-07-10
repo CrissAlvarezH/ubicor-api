@@ -1,10 +1,10 @@
-from typing import Optional
+from typing import Optional, Union
 
 from sqlalchemy.orm import Session
 
 from .utils import get_password_hash
 from .models import Scope, User
-from .schemas import UserCreate
+from .schemas import OAuthUserCreate, UserCreate
 
 
 def get_user(db: Session, user_id: Optional[int] = None,
@@ -17,11 +17,19 @@ def get_user(db: Session, user_id: Optional[int] = None,
         return db.query(User).filter(User.email == email).first()
 
 
-def create_user(db: Session, obj_in: UserCreate) -> User:
+def create_user(db: Session, obj_in: Union[UserCreate, OAuthUserCreate]) -> User:
+    if isinstance(obj_in, UserCreate):
+        provider = "ubicor"
+        password = get_password_hash(obj_in.password)
+    elif isinstance(obj_in, OAuthUserCreate):
+        provider = obj_in.provider
+        password = "@"
+
     db_obj = User(
         full_name=obj_in.full_name,
         email=obj_in.email,
-        password=get_password_hash(obj_in.password)
+        password=password,
+        provider=provider
     )
     db.add(db_obj)
     db.commit()
