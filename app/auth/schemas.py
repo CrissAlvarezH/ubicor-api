@@ -19,9 +19,11 @@ class UserCreate(BaseModel):
         return v
 
 
-class OAuthUserCreate(UserCreate):
+class OAuthUserCreate(BaseModel):
+    full_name: Optional[str] = Field(min_length=5)
+    email: EmailStr
     password: Optional[str] = Field("@")
-    provider: str
+    provider: Optional[str]
 
 
 class UserRetrieve(BaseModel):
@@ -36,6 +38,7 @@ class UserRetrieve(BaseModel):
 
 
 class Token(BaseModel):
+    user: UserRetrieve
     access_token: str
     token_type: str = "bearer"
 
