@@ -1,7 +1,6 @@
 from datetime import datetime
-from email.policy import default
 
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, object_session
 from sqlalchemy import Column, Integer, String, DateTime, \
     Boolean, ForeignKey, Float
 
@@ -33,11 +32,21 @@ class University(Base, TimestampsMixin):
 
     position = relationship("Position")
     buildings = relationship("Building")
+    building_zones = relationship("BuildingZone", viewonly=True)
 
 
 class BuildingZone(Base):
     __tablename__ = "building_zones"
-    name = Column(String, primary_key=True, index=True)
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    university_id = Column(ForeignKey("universities.id"))
+
+    @property
+    def university_slug(self) -> str:
+        return self.university.slug    
+
+    university = relationship("University")
 
 
 class Building(Base, TimestampsMixin):
@@ -47,11 +56,16 @@ class Building(Base, TimestampsMixin):
     name = Column(String)
     code = Column(String, index=True)
     is_active = Column(Boolean, default=False)
-    zone = Column(ForeignKey("building_zones.name"))
+    zone_id = Column(ForeignKey("building_zones.id"))
     created_by = Column(ForeignKey("users.id"))
     position_id = Column(ForeignKey("positions.id"))
     university_id = Column(ForeignKey("universities.id"))
 
+    @property
+    def zone(self):
+        return self.building_zone.name
+
+    building_zone = relationship("BuildingZone")
     creator = relationship("User")
     position = relationship("Position")
     rooms = relationship("Room")
@@ -88,4 +102,3 @@ class Room(Base, TimestampsMixin):
     building_id = Column(ForeignKey("buildings.id"))
 
     creator = relationship("User")
- 
