@@ -49,3 +49,17 @@ class BuildingList(BaseModel):
 
 class BuildingRetrieve(BuildingList):
     rooms: List[RoomRetrieve]
+
+
+class BuildingZoneRetrieve(BaseModel):
+    id: int
+    name: str
+    university_slug: str
+
+    class Config:
+        orm_mode = True
+
+
+class BuildingZoneCreate(BaseModel):
+    name: str
+    university_slug: str

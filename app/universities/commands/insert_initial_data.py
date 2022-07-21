@@ -47,9 +47,9 @@ def insert_initial_data():
         )
 
         for building_data in university_data.buildings:
-            zone = get_building_zone(db, building_data.zone)
+            zone = get_building_zone(db, name=building_data.zone, university_slug=university.slug)
             if zone is None:
-                create_building_zone(db, building_data.zone)
+                create_building_zone(db, university.slug, building_data.zone)
 
             building = create_building(
                 db,
