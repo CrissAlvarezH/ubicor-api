@@ -4,7 +4,7 @@ from fastapi import APIRouter, Body, Depends, Path, Query, Response, status, HTT
 from sqlalchemy.exc import IntegrityError
 
 from app.db.dependencies import get_db
-from app.universities.crud.buildings import create_building_zone, delete_building_zone, \
+from app.universities.crud.buildings import create_building_zone, delete_building_zone, get_building_zone, \
     list_building_zones
 
 from app.universities.schemas.buildings import BuildingZoneCreate, BuildingZoneRetrieve
@@ -21,6 +21,10 @@ async def list(db=Depends(get_db), university_slug: str = Query(None)):
 @router.post("/", response_model=BuildingZoneRetrieve)
 async def create(db=Depends(get_db), building_zone_in: BuildingZoneCreate = Body()):
     try:
+        building_zone = get_building_zone(db, **building_zone_in.dict())
+        if building_zone:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="This zone already exist")
         return create_building_zone(db, **building_zone_in.dict())
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
