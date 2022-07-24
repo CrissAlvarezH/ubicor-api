@@ -96,3 +96,13 @@ def is_owner(db: Session, university_id: int, user_id: int):
         .first()
     )
     return result is not None
+
+
+def get_assigned_universities(db: Session, user_id: int) -> List[University]:
+    return (
+        db.query(University)
+        .join(UniversityOwnership)
+        .filter(University.id == UniversityOwnership.university_id)
+        .filter(UniversityOwnership.user_id == user_id)
+        .all()
+    )
