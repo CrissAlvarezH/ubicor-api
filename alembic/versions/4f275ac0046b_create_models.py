@@ -1,8 +1,8 @@
 """create models
 
-Revision ID: 084c1fe00d8e
+Revision ID: 4f275ac0046b
 Revises: 
-Create Date: 2022-07-17 18:30:56.570009
+Create Date: 2022-07-23 20:50:06.836742
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '084c1fe00d8e'
+revision = '4f275ac0046b'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -82,6 +82,13 @@ def upgrade():
     )
     op.create_index(op.f('ix_building_zones_id'), 'building_zones', ['id'], unique=False)
     op.create_index(op.f('ix_building_zones_name'), 'building_zones', ['name'], unique=False)
+    op.create_table('university_ownership',
+    sa.Column('university_id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['university_id'], ['universities.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('university_id', 'user_id')
+    )
     op.create_table('buildings',
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
@@ -134,6 +141,7 @@ def downgrade():
     op.drop_index(op.f('ix_buildings_id'), table_name='buildings')
     op.drop_index(op.f('ix_buildings_code'), table_name='buildings')
     op.drop_table('buildings')
+    op.drop_table('university_ownership')
     op.drop_index(op.f('ix_building_zones_name'), table_name='building_zones')
     op.drop_index(op.f('ix_building_zones_id'), table_name='building_zones')
     op.drop_table('building_zones')

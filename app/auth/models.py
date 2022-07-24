@@ -1,4 +1,3 @@
-from email.policy import default
 from sqlalchemy import Column, Boolean, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
@@ -16,12 +15,16 @@ class User(Base):
     is_active = Column(Boolean, default=True)
     is_superuser = Column(Boolean, default=False)
 
-    scopes = relationship(
+    __scopes = relationship(
         "Scope",
         primaryjoin="UserScope.user_id == User.id",
         secondary="join(Scope, UserScope, UserScope.scope_name == Scope.name)",
         viewonly=True
     )
+
+    @property
+    def scopes(self):
+        return [s.name for s in self.__scopes]
 
 
 class Scope(Base):

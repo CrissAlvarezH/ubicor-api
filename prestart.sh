@@ -5,6 +5,9 @@ echo "\n-- init prestart -----------------------\n"
 # Execute migrations
 alembic upgrade head
 
+# Create default scopes
+python manage.py core create-default-scopes
+
 # Create super user
 python manage.py core create-superuser
 

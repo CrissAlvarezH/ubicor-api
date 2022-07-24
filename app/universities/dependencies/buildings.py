@@ -31,3 +31,4 @@ async def verify_building_owner(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You don't have permissions to perform this action"
         )
+
