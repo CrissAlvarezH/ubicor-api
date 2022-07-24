@@ -1,8 +1,9 @@
 from typing import List
 
 from fastapi import APIRouter, Body, Depends, \
-    Query, Response, status
+    Query, Response, Security, status
 
+from app.auth.scopes import CREATE_UNIVERSITIES, DELETE_UNIVERSITIES, EDIT_UNIVERSITIES
 from app.db.dependencies import get_db
 from app.auth.dependencies import Auth
 
@@ -26,7 +27,7 @@ router = APIRouter(prefix="/universities")
 async def create(
     db=Depends(get_db),
     university_in: UniversityCreate = Body(),
-    auth: Auth = Depends()
+    auth: Auth = Security(scopes=[CREATE_UNIVERSITIES])
 ):
     university = create_university(db, university_in, auth.user)
     return university
@@ -51,7 +52,7 @@ async def retrieve(
 @router.put(
     "/{university_slug}/",
     response_model=UniversityRetrieve,
-    dependencies=[Depends(verify_university_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_UNIVERSITIES])]
 )
 async def update(
     db=Depends(get_db),
@@ -63,7 +64,7 @@ async def update(
 
 @router.delete(
     "/{university_slug}/",
-    dependencies=[Depends(verify_university_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[DELETE_UNIVERSITIES])]
 )
 async def delete(
     db=Depends(get_db),

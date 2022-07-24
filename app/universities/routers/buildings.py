@@ -1,17 +1,17 @@
 import logging
 from typing import List
 
-from fastapi import APIRouter, Body, Depends, File, Path, Response, UploadFile, \
+from fastapi import APIRouter, Body, Depends, File, Path, Response, Security, UploadFile, \
     status, HTTPException
 
 from app.auth.dependencies import Auth
+from app.auth.scopes import CREATE_BUILDINGS, DELETE_BUILDINGS, EDIT_BUILDINGS, EDIT_UNIVERSITIES
 
 from app.db.dependencies import get_db
-from app.universities.dependencies.buildings import get_current_building, verify_building_owner
+from app.universities.dependencies.buildings import get_current_building
 from app.universities.dependencies.universities import get_current_university, \
     verify_university_owner
 from app.universities.models import University, Building
-
 from app.universities.crud.images import create_image, delete_image, get_image, update_image
 from app.universities.schemas.buildings import BuildingCreate, BuildingImageRetrieve, \
     BuildingList, BuildingRetrieve, ImageRetrieve
@@ -31,7 +31,7 @@ router = APIRouter(prefix="/buildings")
     "/",
     response_model=BuildingList,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(verify_university_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[CREATE_BUILDINGS])]
 )
 async def create(
     db=Depends(get_db),
@@ -55,7 +55,7 @@ async def retrieve(building: Building = Depends(get_current_building)):
 @router.put(
     "/{building_id}/",
     response_model=BuildingList,
-    dependencies=[Depends(verify_building_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
 )
 async def update(
     db=Depends(get_db),
@@ -66,7 +66,9 @@ async def update(
 
 
 @router.delete(
-    "/{building_id}/", dependencies=[Depends(verify_building_owner)])
+    "/{building_id}/",
+    dependencies=[Security(verify_university_owner, scopes=[DELETE_BUILDINGS])]
+)
 async def delete(
     db=Depends(get_db),
     building: Building = Depends(get_current_building)
@@ -80,7 +82,7 @@ async def delete(
     "/{building_id}/images/",
     response_model=List[BuildingImageRetrieve],
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Depends(verify_building_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
 )
 async def create_building_images(
     db=Depends(get_db),
@@ -117,7 +119,7 @@ async def create_building_images(
 @router.put(
     "/{building_id}/images/{image_id}/",
     response_model=ImageRetrieve,
-    dependencies=[Depends(verify_building_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
 )
 async def update_building_image(
     db=Depends(get_db),
@@ -146,7 +148,7 @@ async def update_building_image(
 
 @router.delete(
     "/{building_id}/images/all/",
-    dependencies=[Depends(verify_building_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
 )
 async def remove_all_building_images(
     db=Depends(get_db),
@@ -162,7 +164,7 @@ async def remove_all_building_images(
 
 @router.delete(
     "/{building_id}/images/{image_id}/",
-    dependencies=[Depends(verify_building_owner)]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
 )
 async def remove_building_image(
     db=Depends(get_db),

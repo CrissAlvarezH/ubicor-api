@@ -3,7 +3,7 @@ import click
 from app.auth.crud import add_scope_to_user, create_user, get_user, create_scope, \
     get_scope, list_scopes
 from app.auth.schemas import UserCreate
-from app.auth.scopes import CREATE_BUILDINGS, CREATE_UNIVERSITIES, EDIT_BUILDINGS, \
+from app.auth.scopes import CREATE_BUILDINGS, CREATE_UNIVERSITIES, DELETE_BUILDINGS, DELETE_UNIVERSITIES, EDIT_BUILDINGS, \
     EDIT_UNIVERSITIES, EDIT_USERS, LIST_USERS
 from app.db.session import SessionLocal
 
@@ -46,8 +46,8 @@ def create_default_scopes():
 
     default_scopes = [
         LIST_USERS, EDIT_USERS,
-        CREATE_UNIVERSITIES, EDIT_UNIVERSITIES,
-        CREATE_BUILDINGS, EDIT_BUILDINGS
+        CREATE_UNIVERSITIES, EDIT_UNIVERSITIES, DELETE_UNIVERSITIES,
+        CREATE_BUILDINGS, EDIT_BUILDINGS, DELETE_BUILDINGS
     ]
 
     for scope in default_scopes:

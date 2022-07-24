@@ -33,6 +33,16 @@ class University(Base, TimestampsMixin):
     position = relationship("Position")
     buildings = relationship("Building")
     building_zones = relationship("BuildingZone", viewonly=True)
+    __owners = relationship(
+        "User",
+        primaryjoin="University.id == UniversityOwnership.university_id",
+        secondary="join(User, UniversityOwnership, User.id == UniversityOwnership.user_id)",
+        viewonly=True
+    )
+
+    @property
+    def owners(self):
+        return [o.id for o in self.__owners]
 
 
 class UniversityOwnership(Base):
