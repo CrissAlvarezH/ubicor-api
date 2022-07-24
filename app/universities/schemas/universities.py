@@ -38,6 +38,7 @@ class UniversityRetrieve(BaseModel):
     is_active: bool
     created_by: int
     position_id: int
+    owners: List[int]
     position: PositionRetrieve
     building_zones: List[BuildingZoneRetrieve]
     buildings: List[BuildingList]

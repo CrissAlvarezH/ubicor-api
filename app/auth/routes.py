@@ -1,7 +1,16 @@
-from fastapi import APIRouter, Body, Depends, HTTPException, status
+from typing import List
+
+from fastapi import APIRouter, Body, Depends, HTTPException, Path, Security, status
 from fastapi.security import OAuth2PasswordRequestForm
 
+from google.oauth2 import id_token
+from app.auth.dependencies import Auth
+from app.auth.models import User
+from app.auth.scopes import EDIT_USERS, LIST_USERS
+from app.core.config import settings
+
 from app.db.dependencies import get_db
+from google.auth.transport import requests
 
 from . import schemas
 from . import crud
@@ -19,7 +28,7 @@ async def login(db=Depends(get_db), form_data: OAuth2PasswordRequestForm = Depen
             detail="Invalid credentials")
 
     access_token = create_access_token(
-        schemas.TokenData(user_id=user.id, scopes=[s.name for s in user.scopes]))
+        schemas.TokenData(user_id=user.id, scopes=user.scopes))
     return schemas.Token(user=user, access_token=access_token)
 
 
@@ -37,16 +46,55 @@ async def register(db=Depends(get_db), user_in: schemas.UserCreate = Body()):
     return schemas.Token(user=user_created, access_token=access_token)
 
 
-@router.post("/get-or-create-user", response_model=schemas.UserRetrieve)
-async def getOrCreateUser(db=Depends(get_db), user_in: schemas.OAuthUserCreate = Body()):
-    # check email is not taken
-    user = crud.get_user(db, email=user_in.email)
-    if user:
-        return user
+@router.post("/token-sign-in", response_model=schemas.Token)
+async def token_sign_in(db=Depends(get_db), token_id: str = Body(), provider: str = Body()):
+    if provider == "google":
+        try:
+            idinfo = id_token.verify_oauth2_token(
+                token_id, requests.Request(), settings.GOOGLE_CLIENT_ID)
 
-    if user_in.full_name is None or user_in.provider is None:
+            # get user or create if not exits
+            user = crud.get_user(db, email=idinfo.get("email"))
+            if not user:
+                user_data = schemas.OAuthUserCreate(
+                    full_name=idinfo.get("name"), email=idinfo.get("email"),
+                    provider="google")
+                user = crud.create_user(db, user_data)
+
+            access_token = create_access_token(schemas.TokenData(user_id=user.id))
+            return schemas.Token(user=user, access_token=access_token)
+        except ValueError:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST, detail="invalid token")
+    else:
         raise HTTPException(
-            status.HTTP_400_BAD_REQUEST, "full_name and provider required")
+            status_code=status.HTTP_400_BAD_REQUEST, detail="provider not supported")
 
-    user = crud.create_user(db, user_in)
-    return user
+
+# USERS
+@router.get(
+    "/users",
+    response_model=List[schemas.UserRetrieve],
+    dependencies=[Security(Auth, scopes=[LIST_USERS])]
+)
+async def user_list(db=Depends(get_db)):
+    return crud.list_users(db)
+
+
+@router.put(
+    "/users/{user_id}/",
+    response_model=schemas.UserRetrieve,
+    dependencies=[Security(Auth, scopes=[EDIT_USERS])]
+)
+async def user_edit(
+    db=Depends(get_db),
+    user_id: int = Path(),
+    user_in: schemas.UserUpdate = Body()
+):
+    try:
+        user = crud.update_user(db, user_id, user_in)
+        return user
+    except ValueError as e:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e))

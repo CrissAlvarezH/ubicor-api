@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy.orm import relationship, object_session
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, DateTime, \
     Boolean, ForeignKey, Float
 
@@ -33,6 +33,23 @@ class University(Base, TimestampsMixin):
     position = relationship("Position")
     buildings = relationship("Building")
     building_zones = relationship("BuildingZone", viewonly=True)
+    __owners = relationship(
+        "User",
+        primaryjoin="University.id == UniversityOwnership.university_id",
+        secondary="join(User, UniversityOwnership, User.id == UniversityOwnership.user_id)",
+        viewonly=True
+    )
+
+    @property
+    def owners(self):
+        return [o.id for o in self.__owners]
+
+
+class UniversityOwnership(Base):
+    __tablename__ = "university_ownership"
+
+    university_id = Column(ForeignKey("universities.id"), primary_key=True)
+    user_id = Column(ForeignKey("users.id"), primary_key=True)
 
 
 class BuildingZone(Base):

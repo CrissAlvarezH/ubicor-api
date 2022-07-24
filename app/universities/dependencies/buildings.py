@@ -20,14 +20,3 @@ async def get_current_building(
             detail="Building not found"
         )
     return building
-
-
-async def verify_building_owner(
-    building: Building = Depends(get_current_building),
-    auth: Auth = Depends()
-):
-    if building.created_by != auth.user.id and not auth.user.is_superuser:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="You don't have permissions to perform this action"
-        )

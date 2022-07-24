@@ -31,10 +31,16 @@ class UserRetrieve(BaseModel):
     full_name: str
     email: EmailStr
     scopes: List[str]
+    provider: str
     is_active: bool
 
     class Config:
         orm_mode = True
+
+
+class UserUpdate(BaseModel):
+    full_name: Optional[str]
+    scopes: Optional[List[str]]
 
 
 class Token(BaseModel):

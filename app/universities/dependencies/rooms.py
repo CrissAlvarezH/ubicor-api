@@ -1,6 +1,5 @@
 from fastapi import Depends, Path, HTTPException, status
 
-from app.auth.dependencies import Auth
 from app.db.dependencies import get_db
 
 from app.universities.models import Room

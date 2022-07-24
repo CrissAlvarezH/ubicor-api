@@ -40,9 +40,10 @@ class Settings(BaseSettings):
 
     BUILDINGS_MAX_BYTES_IMAGE_SIZE: int = 2193463
 
-
     SUPER_USER_EMAIL: str
     SUPER_USER_PASSWORD: str
+
+    GOOGLE_CLIENT_ID: str
 
     class Config:
         case_sensitive = True

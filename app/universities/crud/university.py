@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.auth.models import User
 
-from app.universities.models import University
+from app.universities.models import University, UniversityOwnership
 from app.universities.crud.positions import create_position, update_position
 from app.universities.schemas.universities import UniversityCreate
 
@@ -79,3 +79,20 @@ def delete_university(db: Session, id: int):
     university.is_active = False
     db.add(university)
     db.commit()
+
+
+def create_university_ownership(db: Session, university_id: int, user_id: int):
+    ownership = UniversityOwnership(university_id=university_id, user_id=user_id)
+    db.add(ownership)
+    db.commit()
+
+
+def is_owner(db: Session, university_id: int, user_id: int):
+    result = (
+        db.query(UniversityOwnership)
+        .filter(
+            UniversityOwnership.user_id == user_id,
+            UniversityOwnership.university_id == university_id)
+        .first()
+    )
+    return result is not None

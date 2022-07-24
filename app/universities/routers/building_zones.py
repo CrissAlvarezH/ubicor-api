@@ -1,11 +1,15 @@
 from typing import List
 
-from fastapi import APIRouter, Body, Depends, Path, Query, Response, status, HTTPException
+from fastapi import APIRouter, Body, Depends, Path, Response, Security, status, HTTPException
 from sqlalchemy.exc import IntegrityError
+from app.auth import dependencies
+from app.auth.dependencies import Auth
+from app.auth.scopes import CREATE_BUILDINGS, EDIT_UNIVERSITIES
 
 from app.db.dependencies import get_db
-from app.universities.crud.buildings import create_building_zone, delete_building_zone, get_building_zone, \
-    list_building_zones
+from app.universities.crud.buildings import create_building_zone, delete_building_zone, \
+    get_building_zone, list_building_zones
+from app.universities.dependencies.universities import verify_university_owner
 
 from app.universities.schemas.buildings import BuildingZoneCreate, BuildingZoneRetrieve
 
@@ -13,13 +17,24 @@ from app.universities.schemas.buildings import BuildingZoneCreate, BuildingZoneR
 router = APIRouter(prefix="/building-zones")
 
 
-@router.get("", response_model=List[BuildingZoneRetrieve])
-async def list(db=Depends(get_db), university_slug: str = Query(None)):
+@router.get(
+    "",
+    response_model=List[BuildingZoneRetrieve],
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_UNIVERSITIES])]
+)
+async def list(db=Depends(get_db), university_slug: str = Path()):
     return list_building_zones(db, university_slug)
 
 
-@router.post("/", response_model=BuildingZoneRetrieve)
-async def create(db=Depends(get_db), building_zone_in: BuildingZoneCreate = Body()):
+@router.post(
+    "/",
+    response_model=BuildingZoneRetrieve,
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_UNIVERSITIES])]
+)
+async def create(
+    db=Depends(get_db),
+    building_zone_in: BuildingZoneCreate = Body()
+):
     try:
         building_zone = get_building_zone(db, **building_zone_in.dict())
         if building_zone:
@@ -30,7 +45,10 @@ async def create(db=Depends(get_db), building_zone_in: BuildingZoneCreate = Body
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
 
-@router.delete("/{building_zone_id}/")
+@router.delete(
+    "/{building_zone_id}/",
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_UNIVERSITIES])]
+)
 async def delete(db=Depends(get_db), building_zone_id: int = Path()):
     try:
         delete_building_zone(db, building_zone_id)

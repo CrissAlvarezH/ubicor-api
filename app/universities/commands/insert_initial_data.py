@@ -5,7 +5,7 @@ from typing import List
 import click
 
 from app.db.session import SessionLocal
-from app.universities.crud.university import create_university, get_university_by_slug
+from app.universities.crud.university import create_university, create_university_ownership, get_university_by_slug
 from app.universities.crud.buildings import create_building, create_building_zone, \
     get_building_zone
 from app.universities.crud.rooms import create_room
@@ -45,6 +45,8 @@ def insert_initial_data():
             university_in=UniversityCreate(**university_data.dict()),
             creator=user
         )
+
+        create_university_ownership(db, university.id, user.id)
 
         for building_data in university_data.buildings:
             zone = get_building_zone(db, name=building_data.zone, university_slug=university.slug)
