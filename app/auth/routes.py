@@ -4,13 +4,12 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Path, Security, sta
 from fastapi.security import OAuth2PasswordRequestForm
 
 from google.oauth2 import id_token
+from google.auth.transport import requests
+
 from app.auth.dependencies import Auth
-from app.auth.models import User
 from app.auth.scopes import EDIT_USERS, LIST_USERS
 from app.core.config import settings
-
 from app.db.dependencies import get_db
-from google.auth.transport import requests
 
 from . import schemas
 from . import crud

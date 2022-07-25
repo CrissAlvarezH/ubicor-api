@@ -1,6 +1,7 @@
 from typing import List
 
 from pydantic import BaseModel, Field, validator
+from app.auth.schemas import UserRetrieve
 
 from app.universities.schemas.buildings import BuildingList, BuildingZoneRetrieve
 from app.universities.schemas.positions import PositionCreate, \
@@ -45,3 +46,8 @@ class UniversityRetrieve(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class UniversityOwnershipRetrieve(BaseModel):
+    user: UserRetrieve
+    university_slugs: List[str]

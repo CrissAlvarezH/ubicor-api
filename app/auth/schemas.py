@@ -26,6 +26,15 @@ class OAuthUserCreate(BaseModel):
     provider: Optional[str]
 
 
+class UserList(BaseModel):
+    id: int
+    full_name: str
+    email: str
+
+    class Config:
+        orm_mode = True
+
+
 class UserRetrieve(BaseModel):
     id: int
     full_name: str
