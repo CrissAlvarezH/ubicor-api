@@ -2,7 +2,7 @@ from typing import List
 
 from pydantic import BaseModel, Field
 
-from app.auth.schemas import UserRetrieve
+from app.auth.schemas import UserList
 
 from app.universities.schemas.rooms import RoomRetrieve
 from app.universities.schemas.positions import PositionCreate, PositionRetrieve
@@ -39,7 +39,7 @@ class BuildingList(BaseModel):
     code: str
     zone: str
     university_id: int
-    creator: UserRetrieve
+    creator: UserList
     position: PositionRetrieve
     building_images: List[BuildingImageRetrieve]
 

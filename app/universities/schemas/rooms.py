@@ -1,7 +1,5 @@
 from pydantic import BaseModel
 
-from app.auth.schemas import UserRetrieve
-
 
 class RoomCreate(BaseModel):
     name: str
@@ -12,7 +10,7 @@ class RoomCreate(BaseModel):
 class RoomRetrieve(RoomCreate):
     id: int
     building_id: int
-    creator: UserRetrieve
+    created_by: int
 
     class Config:
         orm_mode = True

@@ -60,7 +60,6 @@ class Auth:
         self._validate_user_scopes(security_scopes.scopes)
 
     def _validate_user_scopes(self, scopes_to_validate):
-        print("scope", scopes_to_validate)
         for scope in scopes_to_validate:
             if scope not in self.user.scopes:
                 raise HTTPException(

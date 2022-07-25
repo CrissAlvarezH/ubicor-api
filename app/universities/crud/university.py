@@ -25,6 +25,14 @@ def get_university_by_slug(db: Session, slug: str) -> Optional[University]:
     )
 
 
+def list_universities_by_slugs(db: Session, slugs: List[str]) -> List[University]:
+    return (
+        db.query(University)
+        .filter(University.slug.in_(slugs))
+        .all()
+    )
+
+
 def list_universities(
     db: Session, page: int = 1, page_size: int = 25
 ) -> List[University]:
@@ -106,3 +114,10 @@ def get_assigned_universities(db: Session, user_id: int) -> List[University]:
         .filter(UniversityOwnership.user_id == user_id)
         .all()
     )
+
+
+def delete_all_assigned_university(db: Session, user_id: int):
+    db.query(UniversityOwnership) \
+        .filter(UniversityOwnership.user_id == user_id) \
+        .delete()
+    db.commit()
