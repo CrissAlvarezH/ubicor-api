@@ -9,6 +9,9 @@ El api consta de endpoint para la creación, actualización y consulta de bloque
  - [Poetry](https://python-poetry.org/) como manejador de dependencias
  - [Click](https://click.palletsprojects.com/en/8.1.x/) para la creacion de CLI `manage.py` para ejecutar comandos
  - [Docker](https://www.docker.com/) para el empaquetamiento del proyecto para **dev** y **prod**
+ - [Black](https://black.readthedocs.io/en/stable/) formateador de codigo
+ - [Isort](https://pycqa.github.io/isort/) formatea y organiza los imports
+ - [pre-commit](https://pre-commit.com/) herramienta para instalar y ejecutar hooks de git
 
 # Desplegar
 
