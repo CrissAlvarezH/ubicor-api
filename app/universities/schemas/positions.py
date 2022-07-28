@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class PositionCreate(BaseModel):
-    lat: float 
+    lat: float
     lng: float
 
 

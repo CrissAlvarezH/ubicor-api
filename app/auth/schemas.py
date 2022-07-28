@@ -59,6 +59,7 @@ class Token(BaseModel):
 
 
 class TokenData(BaseModel):
-    """ data that is hashed in token """
+    """data that is hashed in token"""
+
     user_id: int
     scopes: List[str] = []

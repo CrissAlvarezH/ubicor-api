@@ -1,5 +1,6 @@
 # Import all the models, so that Base has them before being
 # imported by Alembic
+from app.auth.models import Scope, User, UserScope
+from app.universities.models import Building, Position, Room, University
+
 from .base_class import Base
-from app.auth.models import User, UserScope, Scope
-from app.universities.models import Position, University, Building, Room

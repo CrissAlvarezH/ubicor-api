@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Boolean, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from app.db.base_class import Base
@@ -19,7 +19,7 @@ class User(Base):
         "Scope",
         primaryjoin="UserScope.user_id == User.id",
         secondary="join(Scope, UserScope, UserScope.scope_name == Scope.name)",
-        viewonly=True
+        viewonly=True,
     )
 
     @property

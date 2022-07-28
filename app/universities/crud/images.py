@@ -6,10 +6,10 @@ from app.universities.models import Image
 
 
 def create_image(
-    db: Session, 
+    db: Session,
     small: Optional[str] = None,
     medium: Optional[str] = None,
-    original: Optional[str] = None
+    original: Optional[str] = None,
 ) -> Image:
     image = Image(small=small, medium=medium, original=original)
     db.add(image)
@@ -19,19 +19,15 @@ def create_image(
 
 
 def get_image(db: Session, id: int) -> Optional[Image]:
-    return (
-        db.query(Image)
-        .filter(Image.id == id)
-        .first()
-    )
+    return db.query(Image).filter(Image.id == id).first()
 
 
 def update_image(
-    db: Session, 
+    db: Session,
     id: int,
     small: Optional[str] = None,
     medium: Optional[str] = None,
-    original: Optional[str] = None
+    original: Optional[str] = None,
 ) -> Image:
     image = get_image(db, id)
 

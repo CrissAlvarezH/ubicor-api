@@ -1,8 +1,15 @@
 from datetime import datetime
 
+from sqlalchemy import (
+    Boolean,
+    Column,
+    DateTime,
+    Float,
+    ForeignKey,
+    Integer,
+    String,
+)
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, DateTime, \
-    Boolean, ForeignKey, Float
 
 from app.db.base_class import Base
 
@@ -37,7 +44,7 @@ class University(Base, TimestampsMixin):
         "User",
         primaryjoin="University.id == UniversityOwnership.university_id",
         secondary="join(User, UniversityOwnership, User.id == UniversityOwnership.user_id)",
-        viewonly=True
+        viewonly=True,
     )
 
     @property
@@ -61,7 +68,7 @@ class BuildingZone(Base):
 
     @property
     def university_slug(self) -> str:
-        return self.university.slug    
+        return self.university.slug
 
     university = relationship("University")
 

@@ -1,14 +1,12 @@
 from datetime import datetime, timedelta
 from typing import Optional
 
-from passlib.context import CryptContext
 from jose import jwt
+from passlib.context import CryptContext
 
 from app.core.config import settings
 
-from . import crud
-from . import schemas
-
+from . import crud, schemas
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -22,7 +20,7 @@ def get_password_hash(password: str):
 
 
 def authenticate_user(db, email: str, password: str):
-    user =  crud.get_user(db, email=email)
+    user = crud.get_user(db, email=email)
     if not user:
         return False
     if not verify_password(password, user.password):
@@ -32,10 +30,14 @@ def authenticate_user(db, email: str, password: str):
 
 def create_access_token(
     data: schemas.TokenData,
-    expires_delta: Optional[timedelta] = timedelta(minutes=settings.JWT_TOKEN_EXP_MINUTES)
+    expires_delta: Optional[timedelta] = timedelta(
+        minutes=settings.JWT_TOKEN_EXP_MINUTES
+    ),
 ):
     to_encode = data.dict()
     expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
-    encode_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+    encode_jwt = jwt.encode(
+        to_encode, settings.SECRET_KEY, algorithm=settings.JWT_ALGORITHM
+    )
     return encode_jwt

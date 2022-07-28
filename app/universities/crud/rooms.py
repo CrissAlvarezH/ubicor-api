@@ -1,19 +1,17 @@
 from typing import Optional
 
-from sqlalchemy.orm import Session
 from sqlalchemy import or_
+from sqlalchemy.orm import Session
 
-from app.universities.schemas.rooms import RoomCreate
 from app.universities.models import Room
+from app.universities.schemas.rooms import RoomCreate
 
 
 def create_room(
     db: Session, building_id: int, room_in: RoomCreate, creator_id: int
 ) -> Room:
     room = Room(
-        **room_in.dict(),
-        building_id=building_id,
-        created_by=creator_id
+        **room_in.dict(), building_id=building_id, created_by=creator_id
     )
 
     db.add(room)
@@ -33,11 +31,7 @@ def search_rooms(db: Session, search: str):
 
 
 def get_room(db: Session, id: int) -> Optional[Room]:
-    return (
-        db.query(Room)
-        .filter(Room.id == id)
-        .first()
-    )
+    return db.query(Room).filter(Room.id == id).first()
 
 
 def update_room(db: Session, id: int, room_in: RoomCreate) -> Room:

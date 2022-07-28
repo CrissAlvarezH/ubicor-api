@@ -1,14 +1,15 @@
-from typing import Optional, Union, List
+from typing import List, Optional, Union
 
 from sqlalchemy.orm import Session
 
-from .utils import get_password_hash
 from .models import Scope, User, UserScope
 from .schemas import OAuthUserCreate, UserCreate, UserUpdate
+from .utils import get_password_hash
 
 
-def get_user(db: Session, user_id: Optional[int] = None,
-             email: Optional[str] = None) -> Optional[User]:
+def get_user(
+    db: Session, user_id: Optional[int] = None, email: Optional[str] = None
+) -> Optional[User]:
     if user_id and email:
         raise ValueError("Only one value must be not null, user id or email.")
     if user_id:
@@ -21,7 +22,9 @@ def list_users(db: Session) -> List[User]:
     return db.query(User).all()
 
 
-def create_user(db: Session, obj_in: Union[UserCreate, OAuthUserCreate]) -> User:
+def create_user(
+    db: Session, obj_in: Union[UserCreate, OAuthUserCreate]
+) -> User:
     if isinstance(obj_in, UserCreate):
         provider = "ubicor"
         password = get_password_hash(obj_in.password)
@@ -33,7 +36,7 @@ def create_user(db: Session, obj_in: Union[UserCreate, OAuthUserCreate]) -> User
         full_name=obj_in.full_name,
         email=obj_in.email,
         password=password,
-        provider=provider
+        provider=provider,
     )
     db.add(db_obj)
     db.commit()

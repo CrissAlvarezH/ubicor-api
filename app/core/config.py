@@ -1,12 +1,8 @@
-from typing import Optional, Dict, Any
+from typing import Any, Dict, Optional
 
 from pydantic import BaseSettings, PostgresDsn, validator
 
-
-COMMAND_LOCATIONS = [
-    "core",
-    "universities"
-]
+COMMAND_LOCATIONS = ["core", "universities"]
 
 
 class Settings(BaseSettings):
@@ -23,7 +19,9 @@ class Settings(BaseSettings):
     PG_DNS: Optional[PostgresDsn] = None
 
     @validator("PG_DNS", pre=True)
-    def assemble_db_connection(cls, v: Optional[str], values: Dict[str, Any]) -> Any:
+    def assemble_db_connection(
+        cls, v: Optional[str], values: Dict[str, Any]
+    ) -> Any:
         if isinstance(v, str):
             return v
         return PostgresDsn.build(
