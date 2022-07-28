@@ -1,11 +1,13 @@
 from typing import List
 
 from pydantic import BaseModel, Field, validator
-from app.auth.schemas import UserRetrieve
 
-from app.universities.schemas.buildings import BuildingList, BuildingZoneRetrieve
-from app.universities.schemas.positions import PositionCreate, \
-    PositionRetrieve
+from app.auth.schemas import UserRetrieve
+from app.universities.schemas.buildings import (
+    BuildingList,
+    BuildingZoneRetrieve,
+)
+from app.universities.schemas.positions import PositionCreate, PositionRetrieve
 
 
 class UniversityCreate(BaseModel):

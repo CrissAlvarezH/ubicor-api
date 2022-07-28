@@ -1,25 +1,58 @@
 import logging
 from typing import List
 
-from fastapi import APIRouter, Body, Depends, File, Path, Response, Security, UploadFile, \
-    status, HTTPException
+from fastapi import (
+    APIRouter,
+    Body,
+    Depends,
+    File,
+    HTTPException,
+    Path,
+    Response,
+    Security,
+    UploadFile,
+    status,
+)
 
 from app.auth.dependencies import Auth
-from app.auth.scopes import CREATE_BUILDINGS, DELETE_BUILDINGS, EDIT_BUILDINGS, EDIT_UNIVERSITIES
-
+from app.auth.scopes import (
+    CREATE_BUILDINGS,
+    DELETE_BUILDINGS,
+    EDIT_BUILDINGS,
+    EDIT_UNIVERSITIES,
+)
 from app.db.dependencies import get_db
+from app.universities.crud.buildings import (
+    attach_building_image,
+    create_building,
+    delete_building,
+    delete_building_image,
+    update_building,
+)
+from app.universities.crud.images import (
+    create_image,
+    delete_image,
+    get_image,
+    update_image,
+)
 from app.universities.dependencies.buildings import get_current_building
-from app.universities.dependencies.universities import get_current_university, \
-    verify_university_owner
-from app.universities.models import University, Building
-from app.universities.crud.images import create_image, delete_image, get_image, update_image
-from app.universities.schemas.buildings import BuildingCreate, BuildingImageRetrieve, \
-    BuildingList, BuildingRetrieve, ImageRetrieve
-from app.universities.crud.buildings import create_building, delete_building, \
-    update_building, attach_building_image, delete_building_image
-from app.universities.utils.images import delete_building_image_file, \
-    is_valid_image, save_building_image_file
-
+from app.universities.dependencies.universities import (
+    get_current_university,
+    verify_university_owner,
+)
+from app.universities.models import Building, University
+from app.universities.schemas.buildings import (
+    BuildingCreate,
+    BuildingImageRetrieve,
+    BuildingList,
+    BuildingRetrieve,
+    ImageRetrieve,
+)
+from app.universities.utils.images import (
+    delete_building_image_file,
+    is_valid_image,
+    save_building_image_file,
+)
 
 LOG = logging.getLogger("universities.routers")
 
@@ -31,13 +64,13 @@ router = APIRouter(prefix="/buildings")
     "/",
     response_model=BuildingList,
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Security(verify_university_owner, scopes=[CREATE_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[CREATE_BUILDINGS])],
 )
 async def create(
     db=Depends(get_db),
     university: University = Depends(get_current_university),
     building_in: BuildingCreate = Body(),
-    auth: Auth = Depends()
+    auth: Auth = Depends(),
 ):
     return create_building(db, university.id, building_in, auth.user)
 
@@ -55,23 +88,22 @@ async def retrieve(building: Building = Depends(get_current_building)):
 @router.put(
     "/{building_id}/",
     response_model=BuildingList,
-    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def update(
     db=Depends(get_db),
     building: Building = Depends(get_current_building),
-    building_in: BuildingCreate = Body()
+    building_in: BuildingCreate = Body(),
 ):
     return update_building(db, building.id, building_in)
 
 
 @router.delete(
     "/{building_id}/",
-    dependencies=[Security(verify_university_owner, scopes=[DELETE_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[DELETE_BUILDINGS])],
 )
 async def delete(
-    db=Depends(get_db),
-    building: Building = Depends(get_current_building)
+    db=Depends(get_db), building: Building = Depends(get_current_building)
 ):
     delete_building(db, building.id)
 
@@ -82,28 +114,31 @@ async def delete(
     "/{building_id}/images/",
     response_model=List[BuildingImageRetrieve],
     status_code=status.HTTP_201_CREATED,
-    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def create_building_images(
     db=Depends(get_db),
     files: List[UploadFile] = File(),
-    building: Building = Depends(get_current_building)
+    building: Building = Depends(get_current_building),
 ):
     if len(building.building_images) + len(files) > 3:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Maximun 3 images by building"
+            detail="Maximun 3 images by building",
         )
 
     for file in files:
         is_valid, error = is_valid_image(file)
         if not is_valid:
             raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+                status_code=status.HTTP_400_BAD_REQUEST, detail=error
+            )
 
         db_image = create_image(db)
         try:
-            image_paths = save_building_image_file(file, building.id, db_image.id) 
+            image_paths = save_building_image_file(
+                file, building.id, db_image.id
+            )
 
             update_image(db, db_image.id, **image_paths)
             attach_building_image(db, building.id, db_image.id)
@@ -111,7 +146,9 @@ async def create_building_images(
             LOG.error(f"Error on create bulding image: {str(e)}")
             LOG.exception(e)
             delete_image(db, db_image.id)
-            raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
     return building.building_images
 
@@ -119,18 +156,19 @@ async def create_building_images(
 @router.put(
     "/{building_id}/images/{image_id}/",
     response_model=ImageRetrieve,
-    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def update_building_image(
     db=Depends(get_db),
     file: UploadFile = File(),
     building: Building = Depends(get_current_building),
-    image_id: int = Path(gt=0)
+    image_id: int = Path(gt=0),
 ):
     is_valid, error = is_valid_image(file)
     if not is_valid:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST, detail=error)
+            status_code=status.HTTP_400_BAD_REQUEST, detail=error
+        )
 
     image = get_image(db, image_id)
     if not image:
@@ -148,7 +186,7 @@ async def update_building_image(
 
 @router.delete(
     "/{building_id}/images/all/",
-    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def remove_all_building_images(
     db=Depends(get_db),
@@ -156,15 +194,14 @@ async def remove_all_building_images(
 ):
     for building_image in building.building_images:
         delete_building_image_file(building_image.image)
-        delete_building_image(
-            db, building_image.image.id, building.id)
+        delete_building_image(db, building_image.image.id, building.id)
 
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
 @router.delete(
     "/{building_id}/images/{image_id}/",
-    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])]
+    dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def remove_building_image(
     db=Depends(get_db),

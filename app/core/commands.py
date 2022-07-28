@@ -1,10 +1,24 @@
 import click
 
-from app.auth.crud import add_scope_to_user, create_user, get_user, create_scope, \
-    get_scope, list_scopes
+from app.auth.crud import (
+    add_scope_to_user,
+    create_scope,
+    create_user,
+    get_scope,
+    get_user,
+    list_scopes,
+)
 from app.auth.schemas import UserCreate
-from app.auth.scopes import CREATE_BUILDINGS, CREATE_UNIVERSITIES, DELETE_BUILDINGS, DELETE_UNIVERSITIES, EDIT_BUILDINGS, \
-    EDIT_UNIVERSITIES, EDIT_USERS, LIST_USERS
+from app.auth.scopes import (
+    CREATE_BUILDINGS,
+    CREATE_UNIVERSITIES,
+    DELETE_BUILDINGS,
+    DELETE_UNIVERSITIES,
+    EDIT_BUILDINGS,
+    EDIT_UNIVERSITIES,
+    EDIT_USERS,
+    LIST_USERS,
+)
 from app.db.session import SessionLocal
 
 from .config import settings
@@ -27,7 +41,7 @@ def create_superuser():
         user_in = UserCreate(
             full_name="root user",
             email=settings.SUPER_USER_EMAIL,
-            password=settings.SUPER_USER_PASSWORD
+            password=settings.SUPER_USER_PASSWORD,
         )
         user = create_user(db, user_in)
 
@@ -45,9 +59,14 @@ def create_default_scopes():
     db = SessionLocal()
 
     default_scopes = [
-        LIST_USERS, EDIT_USERS,
-        CREATE_UNIVERSITIES, EDIT_UNIVERSITIES, DELETE_UNIVERSITIES,
-        CREATE_BUILDINGS, EDIT_BUILDINGS, DELETE_BUILDINGS
+        LIST_USERS,
+        EDIT_USERS,
+        CREATE_UNIVERSITIES,
+        EDIT_UNIVERSITIES,
+        DELETE_UNIVERSITIES,
+        CREATE_BUILDINGS,
+        EDIT_BUILDINGS,
+        DELETE_BUILDINGS,
     ]
 
     for scope in default_scopes:

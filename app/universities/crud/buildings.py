@@ -1,13 +1,17 @@
-from typing import Optional, Union, List
+from typing import List, Optional, Union
 
 from sqlalchemy.orm import Session
 
 from app.auth.models import User
 from app.universities.crud.images import delete_image
-
 from app.universities.crud.positions import create_position, update_position
 from app.universities.crud.university import get_university_by_slug
-from app.universities.models import Building, BuildingImage, BuildingZone, University
+from app.universities.models import (
+    Building,
+    BuildingImage,
+    BuildingZone,
+    University,
+)
 from app.universities.schemas.buildings import BuildingCreate
 
 
@@ -24,7 +28,7 @@ def create_building(
         zone_id=zone.id,
         position_id=position.id,
         university_id=university_id,
-        is_active=True
+        is_active=True,
     )
 
     db.add(building)
@@ -36,9 +40,7 @@ def create_building(
 
 def get_building(db: Session, id: int) -> Optional[Building]:
     return (
-        db.query(Building)
-        .filter(Building.is_active, Building.id == id)
-        .first()
+        db.query(Building).filter(Building.is_active, Building.id == id).first()
     )
 
 
@@ -69,7 +71,10 @@ def delete_building(db: Session, id: int):
 
 # Building zones
 
-def create_building_zone(db: Session, university_slug: str, name: str) -> BuildingZone:
+
+def create_building_zone(
+    db: Session, university_slug: str, name: str
+) -> BuildingZone:
     university = get_university_by_slug(db, university_slug)
     if not university:
         raise ValueError(f"university '{university_slug}' doesn't exits")
@@ -92,12 +97,16 @@ def list_building_zones(
 
 
 def get_building_zone(
-    db: Session, name: str, university_id: Optional[int] = None,
-    university_slug: Optional[str] = None
+    db: Session,
+    name: str,
+    university_id: Optional[int] = None,
+    university_slug: Optional[str] = None,
 ) -> Optional[BuildingZone]:
-    query = db.query(BuildingZone, University) \
-        .filter(BuildingZone.university_id == University.id) \
+    query = (
+        db.query(BuildingZone, University)
+        .filter(BuildingZone.university_id == University.id)
         .filter(BuildingZone.name == name)
+    )
 
     if university_id:
         query.filter(University.id == university_id)
@@ -120,10 +129,9 @@ def delete_building_zone(db: Session, building_zone_id: int):
 
 # Building images
 
+
 def attach_building_image(
-    db: Session,
-    building_id: int,
-    image_id: int
+    db: Session, building_id: int, image_id: int
 ) -> BuildingImage:
     building_image = BuildingImage(building_id=building_id, image_id=image_id)
 
@@ -139,7 +147,8 @@ def delete_building_image(db: Session, image_id: int, building_id: int):
         db.query(BuildingImage)
         .filter(
             BuildingImage.image_id == image_id,
-            BuildingImage.building_id == building_id)
+            BuildingImage.building_id == building_id,
+        )
         .first()
     )
     if building_image:

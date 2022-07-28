@@ -1,5 +1,5 @@
 import os
-from typing import Tuple, Optional
+from typing import Optional, Tuple
 
 from fastapi import UploadFile
 
@@ -16,8 +16,10 @@ def is_valid_image(
 
     # validate size
     if image_size > max_size:
-        error = f"The image {image.filename} does not meet " \
-                f"with size limit {max_size} Bytes"
+        error = (
+            f"The image {image.filename} does not meet "
+            f"with size limit {max_size} Bytes"
+        )
         return False, error
 
     return True, None

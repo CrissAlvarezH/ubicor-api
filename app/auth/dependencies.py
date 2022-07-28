@@ -2,16 +2,13 @@ import logging
 
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, SecurityScopes
-
 from jose import JWTError, jwt
 from pydantic import ValidationError
 
 from app.core.config import settings
 from app.db.dependencies import get_db
 
-from . import crud
-from . import models
-
+from . import crud, models
 
 LOG = logging.getLogger("auth.dependencies")
 
@@ -28,7 +25,9 @@ async def get_current_user(
     )
 
     try:
-        payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.JWT_ALGORITHM])
+        payload = jwt.decode(
+            token, settings.SECRET_KEY, algorithms=[settings.JWT_ALGORITHM]
+        )
         user_id: int = payload.get("user_id")
         if user_id is None:
             raise credentials_exception
@@ -54,8 +53,11 @@ async def get_current_active_user(current_user=Depends(get_current_user)):
 class Auth:
     user: models.User
 
-    def __init__(self, security_scopes: SecurityScopes,
-                 user=Depends(get_current_active_user)):
+    def __init__(
+        self,
+        security_scopes: SecurityScopes,
+        user=Depends(get_current_active_user),
+    ):
         self.user = user
         self._validate_user_scopes(security_scopes.scopes)
 
@@ -64,4 +66,5 @@ class Auth:
             if scope not in self.user.scopes:
                 raise HTTPException(
                     status_code=status.HTTP_403_FORBIDDEN,
-                    detail=f"You dont have '{scope}' scope")
+                    detail=f"You dont have '{scope}' scope",
+                )

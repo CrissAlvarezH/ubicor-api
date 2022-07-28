@@ -1,6 +1,7 @@
 """ Generate global cli automatically """
-import click
 from importlib import import_module
+
+import click
 
 from app.core.config import COMMAND_LOCATIONS
 

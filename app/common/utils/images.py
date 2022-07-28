@@ -1,7 +1,6 @@
 import os
 
 from fastapi import UploadFile
-
 from PIL import Image
 
 
@@ -11,7 +10,7 @@ def compress_img(image, path: str, resize_factor: int = 1, quality: int = 50):
     new_width = int(width / resize_factor)
     new_height = int(height / resize_factor)
     img = img.resize((new_width, new_height))
-    img.save(path, 'JPEG', quality=quality, optimize=True)
+    img.save(path, "JPEG", quality=quality, optimize=True)
 
 
 def save_compress_image_file(
@@ -24,7 +23,7 @@ def save_compress_image_file(
     qualities = {"small": 7, "medium": 4, "original": 1}
     for quality_name, quality_value in qualities.items():
 
-        _, extension = os.path.splitext(file.filename) 
+        _, extension = os.path.splitext(file.filename)
         image_name = f"{image_prefix}_{quality_name}{extension}"
         image_path = folder + image_name
 

@@ -3,9 +3,8 @@ from typing import List, Optional
 from sqlalchemy.orm import Session
 
 from app.auth.models import User
-
-from app.universities.models import University, UniversityOwnership
 from app.universities.crud.positions import create_position, update_position
+from app.universities.models import University, UniversityOwnership
 from app.universities.schemas.universities import UniversityCreate
 
 
@@ -25,12 +24,10 @@ def get_university_by_slug(db: Session, slug: str) -> Optional[University]:
     )
 
 
-def list_universities_by_slugs(db: Session, slugs: List[str]) -> List[University]:
-    return (
-        db.query(University)
-        .filter(University.slug.in_(slugs))
-        .all()
-    )
+def list_universities_by_slugs(
+    db: Session, slugs: List[str]
+) -> List[University]:
+    return db.query(University).filter(University.slug.in_(slugs)).all()
 
 
 def list_universities(
@@ -55,7 +52,7 @@ def create_university(
         slug=university_in.slug,
         position_id=position.id,
         created_by=creator.id,
-        is_active=True
+        is_active=True,
     )
 
     db.add(university)
@@ -90,7 +87,9 @@ def delete_university(db: Session, id: int):
 
 
 def create_university_ownership(db: Session, university_id: int, user_id: int):
-    ownership = UniversityOwnership(university_id=university_id, user_id=user_id)
+    ownership = UniversityOwnership(
+        university_id=university_id, user_id=user_id
+    )
     db.add(ownership)
     db.commit()
 
@@ -100,7 +99,8 @@ def is_owner(db: Session, university_id: int, user_id: int):
         db.query(UniversityOwnership)
         .filter(
             UniversityOwnership.user_id == user_id,
-            UniversityOwnership.university_id == university_id)
+            UniversityOwnership.university_id == university_id,
+        )
         .first()
     )
     return result is not None
@@ -117,7 +117,7 @@ def get_assigned_universities(db: Session, user_id: int) -> List[University]:
 
 
 def delete_all_assigned_university(db: Session, user_id: int):
-    db.query(UniversityOwnership) \
-        .filter(UniversityOwnership.user_id == user_id) \
-        .delete()
+    db.query(UniversityOwnership).filter(
+        UniversityOwnership.user_id == user_id
+    ).delete()
     db.commit()

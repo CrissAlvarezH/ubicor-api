@@ -3,9 +3,8 @@ from typing import List
 from pydantic import BaseModel, Field
 
 from app.auth.schemas import UserList
-
-from app.universities.schemas.rooms import RoomRetrieve
 from app.universities.schemas.positions import PositionCreate, PositionRetrieve
+from app.universities.schemas.rooms import RoomRetrieve
 
 
 class ImageRetrieve(BaseModel):
