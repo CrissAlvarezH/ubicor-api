@@ -112,7 +112,7 @@ async def delete(
 
 @router.post(
     "/{building_id}/images/",
-    response_model=List[BuildingImageRetrieve],
+    response_model=BuildingRetrieve,
     status_code=status.HTTP_201_CREATED,
     dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
@@ -146,11 +146,9 @@ async def create_building_images(
             LOG.error(f"Error on create bulding image: {str(e)}")
             LOG.exception(e)
             delete_image(db, db_image.id)
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid image ({str(e)})")
 
-    return building.building_images
+    return building
 
 
 @router.put(
@@ -179,13 +177,15 @@ async def update_building_image(
     except Exception as e:
         LOG.error(f"Error on update bulding image: {str(e)}")
         LOG.exception(e)
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid image ({str(e)})")
 
     return image
 
 
 @router.delete(
     "/{building_id}/images/all/",
+    response_model=BuildingRetrieve,
+    status_code=status.HTTP_200_OK,
     dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def remove_all_building_images(
@@ -196,11 +196,13 @@ async def remove_all_building_images(
         delete_building_image_file(building_image.image)
         delete_building_image(db, building_image.image.id, building.id)
 
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return building
 
 
 @router.delete(
     "/{building_id}/images/{image_id}/",
+    response_model=BuildingRetrieve,
+    status_code=status.HTTP_200_OK,
     dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def remove_building_image(
@@ -215,4 +217,4 @@ async def remove_building_image(
     delete_building_image_file(image)
     delete_building_image(db, image_id, building.id)
 
-    return Response(status_code=status.HTTP_204_NO_CONTENT)
+    return building

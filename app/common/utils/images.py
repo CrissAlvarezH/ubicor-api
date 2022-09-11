@@ -10,7 +10,7 @@ def compress_img(image, path: str, resize_factor: int = 1, quality: int = 50):
     new_width = int(width / resize_factor)
     new_height = int(height / resize_factor)
     img = img.resize((new_width, new_height))
-    img.save(path, "JPEG", quality=quality, optimize=True)
+    img.save(path, quality=quality, optimize=True)
 
 
 def save_compress_image_file(
