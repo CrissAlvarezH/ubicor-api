@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 
 from fastapi import UploadFile
@@ -10,7 +11,9 @@ def compress_img(image, path: str, resize_factor: int = 1, quality: int = 50):
     new_width = int(width / resize_factor)
     new_height = int(height / resize_factor)
     img = img.resize((new_width, new_height))
-    img.save(path, quality=quality, optimize=True)
+    prefix_path, _ = os.path.splitext(path)
+    path_jpg = prefix_path + ".png"
+    img.save(path_jpg, quality=quality, optimize=True)
 
 
 def save_compress_image_file(
@@ -23,8 +26,8 @@ def save_compress_image_file(
     qualities = {"small": 7, "medium": 4, "original": 1}
     for quality_name, quality_value in qualities.items():
 
-        _, extension = os.path.splitext(file.filename)
-        image_name = f"{image_prefix}_{quality_name}{extension}"
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S%f")
+        image_name = f"{image_prefix}_{quality_name}_{timestamp}.png"
         image_path = folder + image_name
 
         compress_img(file.file, image_path, resize_factor=quality_value)

@@ -43,10 +43,8 @@ from app.universities.dependencies.universities import (
 from app.universities.models import Building, University
 from app.universities.schemas.buildings import (
     BuildingCreate,
-    BuildingImageRetrieve,
     BuildingList,
     BuildingRetrieve,
-    ImageRetrieve,
 )
 from app.universities.utils.images import (
     delete_building_image_file,
@@ -153,7 +151,7 @@ async def create_building_images(
 
 @router.put(
     "/{building_id}/images/{image_id}/",
-    response_model=ImageRetrieve,
+    response_model=BuildingRetrieve,
     dependencies=[Security(verify_university_owner, scopes=[EDIT_BUILDINGS])],
 )
 async def update_building_image(
@@ -173,13 +171,16 @@ async def update_building_image(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
     try:
-        save_building_image_file(file, building.id, image.id)
+        previous_filepaths = image.file_paths
+        image_paths = save_building_image_file(file, building.id, image.id)
+        update_image(db, image.id, **image_paths)
+        delete_building_image_file(previous_filepaths)
     except Exception as e:
         LOG.error(f"Error on update bulding image: {str(e)}")
         LOG.exception(e)
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid image ({str(e)})")
 
-    return image
+    return building
 
 
 @router.delete(
@@ -193,7 +194,7 @@ async def remove_all_building_images(
     building: Building = Depends(get_current_building),
 ):
     for building_image in building.building_images:
-        delete_building_image_file(building_image.image)
+        delete_building_image_file(building_image.image.file_paths)
         delete_building_image(db, building_image.image.id, building.id)
 
     return building
@@ -214,7 +215,7 @@ async def remove_building_image(
     if not image:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
 
-    delete_building_image_file(image)
+    delete_building_image_file(image.file_paths)
     delete_building_image(db, image_id, building.id)
 
     return building

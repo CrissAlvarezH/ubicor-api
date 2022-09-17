@@ -1,3 +1,4 @@
+from typing import List
 from datetime import datetime
 
 from sqlalchemy import (
@@ -113,6 +114,11 @@ class Image(Base, TimestampsMixin):
     small = Column(String)
     medium = Column(String)
     original = Column(String)
+
+    @property
+    def file_paths(self) -> List[str]:
+        all_paths = [self.small, self.medium, self.original]
+        return [path[1:] for path in all_paths] 
 
 
 class Room(Base, TimestampsMixin):

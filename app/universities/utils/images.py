@@ -33,10 +33,8 @@ def save_building_image_file(
     return save_compress_image_file(file, folder, image_prefix)
 
 
-def delete_building_image_file(image: Image):
+def delete_building_image_file(file_paths):
     # remove building images
-    for image_path in [image.small, image.medium, image.original]:
-        # remove first slash from path, it's necessary to find the file
-        image_path = image_path[1:]
+    for image_path in file_paths:
         if os.path.exists(image_path):
             os.remove(image_path)
