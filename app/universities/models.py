@@ -39,7 +39,12 @@ class University(Base, TimestampsMixin):
     position_id = Column(ForeignKey("positions.id"))
 
     position = relationship("Position")
-    buildings = relationship("Building")
+    buildings = relationship(
+        "Building", 
+        primaryjoin="University.id == Building.university_id",
+        secondary="join(Building, BuildingZone, Building.zone_id == BuildingZone.id)",
+        order_by="asc(BuildingZone.name), asc(Building.id)"
+    )
     building_zones = relationship("BuildingZone", viewonly=True)
     __owners = relationship(
         "User",
