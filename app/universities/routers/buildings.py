@@ -93,7 +93,7 @@ async def update(
     building: Building = Depends(get_current_building),
     building_in: BuildingCreate = Body(),
 ):
-    return update_building(db, building.id, building_in)
+    return update_building(db, building.id, building_in, building.university_id)
 
 
 @router.delete(

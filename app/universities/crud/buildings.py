@@ -45,14 +45,17 @@ def get_building(db: Session, id: int) -> Optional[Building]:
 
 
 def update_building(
-    db: Session, id: int, building_in: BuildingCreate
+    db: Session, id: int, building_in: BuildingCreate, university_id: int
 ) -> Building:
     building = get_building(db, id)
 
     update_position(db, building.position.id, building_in.position)
 
+    zone = get_building_zone(db, building_in.zone, university_id=university_id)
+
     building.name = building_in.name
     building.code = building_in.code
+    building.zone_id = zone.id
 
     db.add(building)
     db.commit()
