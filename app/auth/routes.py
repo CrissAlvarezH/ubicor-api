@@ -36,9 +36,9 @@ async def login(
         )
 
     access_token = create_access_token(
-        schemas.TokenData(user_id=user.id, scopes=user.scopes)
+        schemas.TokenData(user=user)
     )
-    return schemas.Token(user=user, access_token=access_token)
+    return schemas.Token(access_token=access_token)
 
 
 @router.post("/register", response_model=schemas.Token)
@@ -52,10 +52,10 @@ async def register(db=Depends(get_db), user_in: schemas.UserCreate = Body()):
     # if not taken then create user an send email
     user_created = crud.create_user(db, user_in)
     access_token = create_access_token(
-        schemas.TokenData(user_id=user_created.id)
+        schemas.TokenData(user=user_created)
     )
 
-    return schemas.Token(user=user_created, access_token=access_token)
+    return schemas.Token(access_token=access_token)
 
 
 @router.post("/token-sign-in", response_model=schemas.Token)
@@ -79,9 +79,9 @@ async def token_sign_in(
                 user = crud.create_user(db, user_data)
 
             access_token = create_access_token(
-                schemas.TokenData(user_id=user.id)
+                schemas.TokenData(user=user)
             )
-            return schemas.Token(user=user, access_token=access_token)
+            return schemas.Token(access_token=access_token)
         except ValueError:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST, detail="invalid token"

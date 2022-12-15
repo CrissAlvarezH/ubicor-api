@@ -53,7 +53,6 @@ class UserUpdate(BaseModel):
 
 
 class Token(BaseModel):
-    user: UserRetrieve
     access_token: str
     token_type: str = "bearer"
 
@@ -61,5 +60,5 @@ class Token(BaseModel):
 class TokenData(BaseModel):
     """data that is hashed in token"""
 
-    user_id: int
+    user: UserRetrieve
     scopes: List[str] = []
