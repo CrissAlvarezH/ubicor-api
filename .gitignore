@@ -6,4 +6,6 @@ __pycache__
 
 .vscode
 
+/app/universities/commands/ubicor_imgs
+
 /app/static/images/buildings/*

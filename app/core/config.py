@@ -18,6 +18,8 @@ class Settings(BaseSettings):
 
     PG_DNS: Optional[PostgresDsn] = None
 
+    MAX_IMGS_BY_BUILDING: int = 3
+
     @validator("PG_DNS", pre=True)
     def assemble_db_connection(
         cls, v: Optional[str], values: Dict[str, Any]

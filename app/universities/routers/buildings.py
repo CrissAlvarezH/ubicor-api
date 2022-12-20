@@ -21,6 +21,7 @@ from app.auth.scopes import (
     EDIT_BUILDINGS,
     EDIT_UNIVERSITIES,
 )
+from app.core.config import settings
 from app.db.dependencies import get_db
 from app.universities.crud.buildings import (
     attach_building_image,
@@ -119,10 +120,10 @@ async def create_building_images(
     files: List[UploadFile] = File(),
     building: Building = Depends(get_current_building),
 ):
-    if len(building.building_images) + len(files) > 3:
+    if len(building.building_images) + len(files) > settings.MAX_IMGS_BY_BUILDING:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Maximun 3 images by building",
+            detail=f"Maximun {settings.MAX_IMGS_BY_BUILDING} images by building",
         )
 
     for file in files:
