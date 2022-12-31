@@ -95,7 +95,7 @@ class Building(Base, TimestampsMixin):
     def zone(self):
         return self.building_zone.name
 
-    building_zone = relationship("BuildingZone")
+    building_zone = relationship("BuildingZone", viewonly=True)
     creator = relationship("User")
     position = relationship("Position")
     rooms = relationship("Room")
