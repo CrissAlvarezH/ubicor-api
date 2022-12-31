@@ -4,6 +4,7 @@ from typing import List
 
 import click
 
+from app.core.config import settings
 from app.auth.crud import get_user
 from app.db.session import SessionLocal
 from app.universities.crud.buildings import (
@@ -39,7 +40,7 @@ def insert_initial_data():
     data = [UniversityData(**u) for u in data]
 
     db = SessionLocal()
-    user = get_user(db, email="root@email.com")
+    user = get_user(db, email=settings.SUPER_USER_EMAIL)
 
     for university_data in data:
         university = get_university_by_slug(db, university_data.slug)
