@@ -43,7 +43,7 @@ class University(Base, TimestampsMixin):
         "Building", 
         primaryjoin="University.id == Building.university_id",
         secondary="join(Building, BuildingZone, Building.zone_id == BuildingZone.id)",
-        order_by="asc(BuildingZone.name), asc(Building.id)"
+        order_by="asc(BuildingZone.name), asc(cast(Building.code, Integer))"
     )
     building_zones = relationship("BuildingZone", viewonly=True)
     __owners = relationship(
