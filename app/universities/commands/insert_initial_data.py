@@ -4,8 +4,8 @@ from typing import List
 
 import click
 
-from app.core.config import settings
 from app.auth.crud import get_user
+from app.core.config import settings
 from app.db.session import SessionLocal
 from app.universities.crud.buildings import (
     create_building,
