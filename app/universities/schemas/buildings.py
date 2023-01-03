@@ -37,6 +37,7 @@ class BuildingList(BaseModel):
     name: str
     code: str
     zone: str
+    is_active: bool
     university_id: int
     creator: UserList
     position: PositionRetrieve

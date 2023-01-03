@@ -1,5 +1,5 @@
-from typing import List
 from datetime import datetime
+from typing import List
 
 from sqlalchemy import (
     Boolean,
@@ -40,10 +40,10 @@ class University(Base, TimestampsMixin):
 
     position = relationship("Position")
     buildings = relationship(
-        "Building", 
-        primaryjoin="University.id == Building.university_id",
+        "Building",
+        primaryjoin="and_(University.id == Building.university_id, Building.is_active)",
         secondary="join(Building, BuildingZone, Building.zone_id == BuildingZone.id)",
-        order_by="asc(BuildingZone.name), asc(cast(Building.code, Integer))"
+        order_by="asc(BuildingZone.name), asc(cast(Building.code, Integer))",
     )
     building_zones = relationship("BuildingZone", viewonly=True)
     __owners = relationship(
@@ -123,7 +123,7 @@ class Image(Base, TimestampsMixin):
     @property
     def file_paths(self) -> List[str]:
         all_paths = [self.small, self.medium, self.original]
-        return [path[1:] for path in all_paths] 
+        return [path[1:] for path in all_paths]
 
 
 class Room(Base, TimestampsMixin):

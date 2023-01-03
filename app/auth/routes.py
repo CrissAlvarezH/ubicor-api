@@ -35,9 +35,7 @@ async def login(
             detail="Invalid credentials",
         )
 
-    access_token = create_access_token(
-        schemas.TokenData(user=user)
-    )
+    access_token = create_access_token(schemas.TokenData(user=user))
     return schemas.Token(access_token=access_token)
 
 
@@ -51,9 +49,7 @@ async def register(db=Depends(get_db), user_in: schemas.UserCreate = Body()):
 
     # if not taken then create user an send email
     user_created = crud.create_user(db, user_in)
-    access_token = create_access_token(
-        schemas.TokenData(user=user_created)
-    )
+    access_token = create_access_token(schemas.TokenData(user=user_created))
 
     return schemas.Token(access_token=access_token)
 
@@ -78,9 +74,7 @@ async def token_sign_in(
                 )
                 user = crud.create_user(db, user_data)
 
-            access_token = create_access_token(
-                schemas.TokenData(user=user)
-            )
+            access_token = create_access_token(schemas.TokenData(user=user))
             return schemas.Token(access_token=access_token)
         except ValueError:
             raise HTTPException(

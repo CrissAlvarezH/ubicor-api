@@ -47,6 +47,7 @@ from app.universities.schemas.buildings import (
     BuildingList,
     BuildingRetrieve,
 )
+from app.universities.utils.frontend import revalidate_frontend
 from app.universities.utils.images import (
     delete_building_image_file,
     is_valid_image,
@@ -71,7 +72,9 @@ async def create(
     building_in: BuildingCreate = Body(),
     auth: Auth = Depends(),
 ):
-    return create_building(db, university.id, building_in, auth.user)
+    building = create_building(db, university.id, building_in, auth.user)
+    revalidate_frontend(university.slug, building.code)
+    return building
 
 
 @router.get("/", response_model=List[BuildingList])
@@ -92,9 +95,14 @@ async def retrieve(building: Building = Depends(get_current_building)):
 async def update(
     db=Depends(get_db),
     building: Building = Depends(get_current_building),
+    university_slug: str = Path(),
     building_in: BuildingCreate = Body(),
 ):
-    return update_building(db, building.id, building_in, building.university_id)
+    building = update_building(
+        db, building.id, building_in, building.university_id
+    )
+    revalidate_frontend(university_slug, building.code)
+    return building
 
 
 @router.delete(
@@ -102,10 +110,12 @@ async def update(
     dependencies=[Security(verify_university_owner, scopes=[DELETE_BUILDINGS])],
 )
 async def delete(
-    db=Depends(get_db), building: Building = Depends(get_current_building)
+    db=Depends(get_db),
+    university_slug: str = Path(),
+    building: Building = Depends(get_current_building),
 ):
     delete_building(db, building.id)
-
+    revalidate_frontend(university_slug, building.code)
     return Response(status_code=status.HTTP_204_NO_CONTENT)
 
 
@@ -117,10 +127,14 @@ async def delete(
 )
 async def create_building_images(
     db=Depends(get_db),
+    university_slug: str = Path(),
     files: List[UploadFile] = File(),
     building: Building = Depends(get_current_building),
 ):
-    if len(building.building_images) + len(files) > settings.MAX_IMGS_BY_BUILDING:
+    if (
+        len(building.building_images) + len(files)
+        > settings.MAX_IMGS_BY_BUILDING
+    ):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"Maximun {settings.MAX_IMGS_BY_BUILDING} images by building",
@@ -145,8 +159,12 @@ async def create_building_images(
             LOG.error(f"Error on create bulding image: {str(e)}")
             LOG.exception(e)
             delete_image(db, db_image.id)
-            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid image ({str(e)})")
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Invalid image ({str(e)})",
+            )
 
+    revalidate_frontend(university_slug, building.code)
     return building
 
 
@@ -157,6 +175,7 @@ async def create_building_images(
 )
 async def update_building_image(
     db=Depends(get_db),
+    university_slug: str = Path(),
     file: UploadFile = File(),
     building: Building = Depends(get_current_building),
     image_id: int = Path(gt=0),
@@ -179,8 +198,12 @@ async def update_building_image(
     except Exception as e:
         LOG.error(f"Error on update bulding image: {str(e)}")
         LOG.exception(e)
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=f"Invalid image ({str(e)})")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"Invalid image ({str(e)})",
+        )
 
+    revalidate_frontend(university_slug, building.code)
     return building
 
 
@@ -192,12 +215,14 @@ async def update_building_image(
 )
 async def remove_all_building_images(
     db=Depends(get_db),
+    university_slug: str = Path(),
     building: Building = Depends(get_current_building),
 ):
     for building_image in building.building_images:
         delete_building_image_file(building_image.image.file_paths)
         delete_building_image(db, building_image.image.id, building.id)
 
+    revalidate_frontend(university_slug, building.code)
     return building
 
 
@@ -209,6 +234,7 @@ async def remove_all_building_images(
 )
 async def remove_building_image(
     db=Depends(get_db),
+    university_slug: str = Path(),
     building: Building = Depends(get_current_building),
     image_id: int = Path(gt=0),
 ):
@@ -219,4 +245,5 @@ async def remove_building_image(
     delete_building_image_file(image.file_paths)
     delete_building_image(db, image_id, building.id)
 
+    revalidate_frontend(university_slug, building.code)
     return building
