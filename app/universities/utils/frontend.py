@@ -11,4 +11,7 @@ def revalidate_frontend(university_slug: str, building_codes: str):
         "secret": settings.FRONTEND_REVALIDATE_SECRET,
     }
 
-    requests.post(url, params=query_params)
+    try:
+        requests.post(url, params=query_params)
+    except:
+        pass

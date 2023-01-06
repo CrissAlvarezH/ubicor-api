@@ -47,3 +47,31 @@ Si queremos usar docker parar en lanzamiento de la app podemos usar `docker-comp
     docker-compose up
 
 El comando anterior creará los contenedores necesarios y ejecutará los scripts para el funcionamiento correcto de la app.
+
+
+# Preparar para desarrollo
+
+## 1. Usar poetry para instalar las dependencias
+
+```
+# crear la carpeta .venv en la raiz del proyecto
+poetry config virtualenvs.in-project true 
+
+# instalar dependencias
+poetry install
+
+# activar environment de python
+source .venv/bin/activate
+```
+
+## 2. Instalar pre-commit en git
+
+```
+pre-commit install
+```
+
+## 3. Correr proyecto en local
+
+```
+uvicorn app.main:app --reload
+```

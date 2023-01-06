@@ -38,16 +38,21 @@ def upload_unicor_imgs(domain, user, password):
             " -------",
         )
 
-        # TODO upload all building image in just one request
+        images = []
         for img_name in os.listdir(path):
             img_path = os.path.join(path, img_name)
+            images.append((img_name, open(img_path, "rb")))
 
-            with open(img_path, "rb") as f:
-                response = requests.post(
-                    url=f"{BASE_URL}/universities/unicor/buildings/{building.get('id')}/images/",
-                    headers={"Authorization": f"Bearer {access_token}"},
-                    files={"files": f},
-                )
-                print("upload", img_name, "response code", response.status_code)
-                if response.status_code != 201:
-                    print("response body:", response.text)
+        response = requests.post(
+            url=f"{BASE_URL}/universities/unicor/buildings/{building.get('id')}/images/",
+            headers={"Authorization": f"Bearer {access_token}"},
+            files=[("files", f) for f in images],
+        )
+
+        for img_name, image in images:
+            image.close()
+
+        print("upload", [i[0] for i in images])
+        print("response code", response.status_code)
+        if response.status_code != 201:
+            print("response body:", response.text)
