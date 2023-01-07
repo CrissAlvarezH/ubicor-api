@@ -2,6 +2,7 @@ from fastapi import APIRouter
 
 from .building_zones import router as building_zone_router
 from .buildings import router as building_routes
+from .reports import router as report_routes
 from .rooms import router as room_routes
 from .rooms import standalone_room_router
 from .universities import router as university_routes
@@ -26,3 +27,4 @@ router.include_router(
     tags=["building-zones"],
     prefix="/universities/{university_slug}",
 )
+router.include_router(report_routes, tags=["Reports"], prefix="/reports")

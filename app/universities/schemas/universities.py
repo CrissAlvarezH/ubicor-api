@@ -28,7 +28,7 @@ class UniversityList(BaseModel):
     slug: str
     is_active: bool
     created_by: int
-    position_id: int
+    position: PositionRetrieve
 
     class Config:
         orm_mode = True
