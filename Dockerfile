@@ -23,4 +23,6 @@ COPY . .
 
 RUN chmod +x ./scripts.sh
 
+EXPOSE 80
+
 CMD ./scripts.sh start
