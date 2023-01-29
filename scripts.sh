@@ -15,7 +15,7 @@ prestart() {
     # Create super user
     python manage.py core create-superuser
 
-    # Insert inicial data
+    # Insert initial data
     python manage.py universities insert-initial-data
 
     printf "\n-- finish prestart -----------------------\n"
