@@ -14,5 +14,5 @@ jobs:
       run: sh scripts.sh publish
     - name: Reload server
       run: |
-        echo "${{AMAZON_SERVER_KEY}}" > server-key.pem
+        echo "${{secrets.AMAZON_SERVER_KEY}}" > server-key.pem
         sh scripts.sh deploy
