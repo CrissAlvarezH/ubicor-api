@@ -8,7 +8,8 @@ El api consta de endpoint para la creación, actualización y consulta de bloque
  - [Alembic](https://alembic.sqlalchemy.org/en/latest/) para las migraciones de la base de datos
  - [Poetry](https://python-poetry.org/) como manejador de dependencias
  - [Click](https://click.palletsprojects.com/en/8.1.x/) para la creacion de CLI `manage.py` para ejecutar comandos
- - [Docker](https://www.docker.com/) para el empaquetamiento del proyecto para **dev** y **prod**
+ - [Docker](https://www.docker.com/) y [Docker Compose](https://docs.docker.com/compose/) para el empaquetamiento del proyecto para **dev** y **prod**
+ - [Github Actions](https://github.com/features/actions) Para la integración continua
  - [Black](https://black.readthedocs.io/en/stable/) formateador de codigo
  - [Isort](https://pycqa.github.io/isort/) formatea y organiza los imports
  - [pre-commit](https://pre-commit.com/) herramienta para instalar y ejecutar hooks de git
@@ -29,12 +30,14 @@ Para esto puede seguir la [guía oficial](https://python-poetry.org/docs/#instal
     poetry install
 
 #### 3. Variables de entorno
-Clonar el archivo `.env.example`, renombrar a `.env` y cambiar los valores de cada variable por los que necesite usar, como las credenciales de la base de datos, por ejemplo.
+Clonar el archivo `.env.example`, renombrar a `.env` y cambiar los valores de cada variable por los que 
+necesite usar, como las credenciales de la base de datos, por ejemplo.
 
 #### 4. Correr comandos de inserción de data inicial
-Se deben ejecutar las migraciones de la base de datos, crear un superusuario e insertar una data inicial para llenar la base de datos, todos estos comandos los encontramos en el script `prestart.sh`, por lo que corriendo el script tendríamos listo estos tres puntos.
+Se deben ejecutar las migraciones de la base de datos, crear un superusuario e insertar una data 
+inicial para llenar la base de datos, para esto usamos el siguiente comando.
 
-    sh prestart.sh
+    make prestart
 
 #### 5. Correr servidor
 Corremos con el flag `--reload` para que se refresque cada que detecte un cambio en el codigo
@@ -73,5 +76,18 @@ pre-commit install
 ## 3. Correr proyecto en local
 
 ```
-uvicorn app.main:app --reload
+make start
 ```
+
+# Configurar Integración Continua
+
+## Github Actions
+
+Para poner en funcionamiento las github actions se debe configurar los secrets
+
+- DOCKER_PASSWORD
+- DOCKER_USER
+- AMAZON_SERVER_KEY
+
+Y antes de esto la app debe estar corriendo instalada y corriendo en el server usando
+[el repositorio de configuración del servidor](https://github.com/CrissAlvarezH/cristian-projects-server)
