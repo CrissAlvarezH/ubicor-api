@@ -7,15 +7,23 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        echo "${{secrets.DOCKER_PASSWORD}}" | docker login --username ${{secrets.DOCKER_USER}} --password-stdin
-        sh scripts.sh publish
-    - name: Reload server
+        sh scripts.sh build
+    - name: Push docker image to docker hub
       run: |
-        echo "${{secrets.AMAZON_SERVER_KEY}}" > server-key.pem
-        chmod 600 server-key.pem
-        sh scripts.sh deploy
+        echo "${{secrets.DOCKER_PASSWORD}}" | docker login --username ${{secrets.DOCKER_USER}} --password-stdin
+        sh scripts.sh build
+
+  deploy:
+    runs-on: ubuntu-20.04
+    needs: [build]
+    steps:
+      - name: Reload ubicor api service on server
+        run: |
+          echo "${{secrets.AMAZON_SERVER_KEY}}" > server-key.pem
+          chmod 600 server-key.pem
+          sh scripts.sh deploy
