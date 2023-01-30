@@ -91,3 +91,18 @@ Para poner en funcionamiento las github actions se debe configurar los secrets
 
 Y antes de esto la app debe estar corriendo instalada y corriendo en el server usando
 [el repositorio de configuración del servidor](https://github.com/CrissAlvarezH/cristian-projects-server)
+
+# Comandos
+
+## Subir imagenes masivamente
+
+Este comando nos permite suber imagenes a distintos bloques de forma masiva, para esto primer
+debemos dejar las imagenes en la carpeta `app/universities/commands/ubicor_imgs` (para Ubicor)
+estas imagenes las encontramos en los backups que se toman del servidor, las subcarpetas deben llevar
+el nombre de los bloques, despues de esto podemos correr el siguiente comando.
+
+```
+python manage.py universities upload-unicor-imgs <domain> <user> <password>
+```
+
+Los parametros que debemos pasar son del backend al cual queremos apuntar.
