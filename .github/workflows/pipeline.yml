@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-20.04
     needs: [build]
     steps:
+      - uses: actions/checkout@v3
       - name: Reload ubicor api service on server
         run: |
           echo "${{secrets.AMAZON_SERVER_KEY}}" > server-key.pem
