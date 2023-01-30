@@ -9,7 +9,7 @@ import requests
 @click.argument("user")
 @click.argument("password")
 def upload_unicor_imgs(domain, user, password):
-    BASE_URL = f"http://{domain}/api/v1"
+    BASE_URL = f"https://{domain}/api/v1"
 
     # get token
     response = requests.post(
