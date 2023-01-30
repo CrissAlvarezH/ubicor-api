@@ -32,6 +32,13 @@ build_img() {
 }
 
 
+push_img() {
+    version=$1
+    docker push crissalvarezh/ubicor-api:$version
+    docker push crissalvarezh/ubicor-api:latest
+}
+
+
 if [ "$action" = "start" ]; then
     prestart
 
@@ -48,9 +55,10 @@ elif [ "$action" = "build" ]; then
 
 elif [ "$action" = "publish" ]; then
     build_img "$2"
+    push_img "$2"
 
-    docker push crissalvarezh/ubicor-api:$version
-    docker push crissalvarezh/ubicor-api:latest
+elif [ "$action" = "push-img" ]; then
+    push_img "$2"
 
 elif [ "$action" = "deploy" ]; then
 

@@ -5,6 +5,9 @@ build:
 publish:
 	sh scripts.sh publish $(version)
 
+push-img:
+	sh scripts.sh push-img $(version)
+
 deploy:
 	sh scripts.sh deploy
 

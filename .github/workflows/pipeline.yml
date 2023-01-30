@@ -16,7 +16,7 @@ jobs:
     - name: Push docker image to docker hub
       run: |
         echo "${{secrets.DOCKER_PASSWORD}}" | docker login --username ${{secrets.DOCKER_USER}} --password-stdin
-        sh scripts.sh build
+        sh scripts.sh push-img
 
   deploy:
     runs-on: ubuntu-20.04
