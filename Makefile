@@ -5,6 +5,9 @@ build:
 publish:
 	sh scripts.sh publish $(version)
 
+deploy:
+	sh scripts.sh deploy
+
 prestart:
 	sh scripts.sh prestart
 

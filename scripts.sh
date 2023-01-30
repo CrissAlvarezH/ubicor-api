@@ -56,7 +56,7 @@ elif [ "$action" = "deploy" ]; then
 
   ssh -o StrictHostKeyChecking=no \
       -i ./server-key.pem ec2-user@alvarezcristian.com \
-      "cd /home/ec3-user/cristian-server-projects && make reload ubicor-frontend"
+      "cd /home/ec3-user/cristian-server-projects && make reload service=ubicor-api"
 
 fi
 
