@@ -17,4 +17,5 @@ jobs:
     - name: Reload server
       run: |
         echo "${{secrets.AMAZON_SERVER_KEY}}" > server-key.pem
+        chmod 600 server-key.pem
         sh scripts.sh deploy
