@@ -79,6 +79,46 @@ pre-commit install
 make start
 ```
 
+## Usando Docker
+
+```
+# construimos la imagen
+# Nota: en Mac puede ser necesario ejecutar (solo para el build)
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+docker-compose build
+
+# corremos la imagen de la app y de la base de datos
+docker-compose up
+```
+
+Despues de ejecutar esos comandos podrás ver el siguiente output en consola
+
+```
+ubicor-api-database-1  | 2023-05-29 05:25:52.996 UTC [1] LOG:  starting PostgreSQL 14.8 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 12.2.1_git20220924-r10) 12.2.1 20220924, 64-bit
+ubicor-api-database-1  | 2023-05-29 05:25:52.996 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+ubicor-api-database-1  | 2023-05-29 05:25:52.997 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+ubicor-api-database-1  | 2023-05-29 05:25:52.999 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+ubicor-api-database-1  | 2023-05-29 05:25:53.002 UTC [52] LOG:  database system was shut down at 2023-05-29 05:25:52 UTC
+ubicor-api-database-1  | 2023-05-29 05:25:53.005 UTC [1] LOG:  database system is ready to accept connections
+ubicor-api-app-1       | INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+ubicor-api-app-1       | INFO  [alembic.runtime.migration] Will assume transactional DDL.
+ubicor-api-app-1       | INFO  [alembic.runtime.migration] Running upgrade  -> 4f275ac0046b, create models
+ubicor-api-app-1       | 
+ubicor-api-app-1       | INIT create superuser
+ubicor-api-app-1       | FINISH create superuser
+ubicor-api-app-1       | 
+ubicor-api-app-1       | INIT insert initial data
+ubicor-api-app-1       | FINISH insert initial data
+ubicor-api-app-1       | INFO:     Will watch for changes in these directories: ['/code']
+ubicor-api-app-1       | INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+ubicor-api-app-1       | INFO:     Started reloader process [1] using watchgod
+ubicor-api-app-1       | INFO:     Started server process [24]
+ubicor-api-app-1       | INFO:     Waiting for application startup.
+ubicor-api-app-1       | INFO:     Application startup complete.
+```
+
+Lo cual indicará que el proyecto esta corriendo en el puerto 8000
+
 # Configurar Integración Continua
 
 ## Github Actions

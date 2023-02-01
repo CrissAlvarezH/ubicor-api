@@ -24,6 +24,10 @@ def upload_unicor_imgs(domain, user, password):
 
     for building in response.json():
         print("\n")
+        if len(building.get("building_images")) > 0:
+            print(building.get("code"), building.get("name"), "has images")
+            continue
+
         # get images from folder called equals to building code
         path = os.path.join(
             os.path.dirname(__file__), "ubicor_imgs", building.get("code")

@@ -18,7 +18,7 @@ dev:
 	sh scripts.sh dev
 
 down:
-	docker compose down
+	docker-compose down
 
 rm-vols: down
 	docker volume rm ubicor-api_dbdata
